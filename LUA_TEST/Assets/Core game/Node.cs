@@ -24,9 +24,9 @@ public class Node : MonoBehaviour
         //clock.OnEnd += (c) => OnClockEnd(this);
         clock.OnEnd += (c) =>
         {
-            LuaCore.script.Globals["Node"] = UserData.Create(this);
+            LuaCore.Script.Globals["Node"] = UserData.Create(this);
             LuaCore.DoFunction("OnStartGame");
-            LuaCore.script.Globals.Remove("Node");
+            LuaCore.Script.Globals.Remove("Node");
         };
 
     }
@@ -48,13 +48,13 @@ public class Node : MonoBehaviour
 
     public void OnClockEnd(Node node) // solo poner cosas de lua aqui (?)
     {
-        LuaCore.script.Globals["Node"] = UserData.Create(this);
+        LuaCore.Script.Globals["Node"] = UserData.Create(this);
 
         //LuaCore.script.DoString("Debug('nodo:'.. Node.Name)");
         // ejecutar funcion de archivo lua
         //OnEnd?.Invoke(this);
 
-        LuaCore.script.Globals.Remove("Node");
+        LuaCore.Script.Globals.Remove("Node");
     }
 
 }

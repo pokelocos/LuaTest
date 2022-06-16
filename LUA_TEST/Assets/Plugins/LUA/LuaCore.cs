@@ -1,34 +1,44 @@
 ﻿using MoonSharp.Interpreter;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public static class LuaCore
 {
     private static Script _script;
     private static Dictionary<string, List<DynValue>> functions = new Dictionary<string, List<DynValue>>();
-    //private static Dictionary<string, MoonSharp.Interpreter.Coroutine> functions = new Dictionary<string, MoonSharp.Interpreter.Coroutine>();
 
-    public static Script script {
+    /// <summary>
+    /// Returns the single instance of the Script component belonging to "MoonSharp"
+    /// </summary>
+    public static Script Script 
+    {
         get
         {
             return (_script != null)? _script : _script = new Script();
         }
     }
 
+
+    /// <summary>
+    /// It collects all the classes and functions that reference through the class
+    /// attributes belonging to lua and "LuaCommand".
+    /// </summary>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void Init()
     {
-        UserData.RegisterAssembly(); // << IMPORTANTE
+        UserData.RegisterAssembly();
         CollectMetohdsFromScripts();
     }
 
+    /// <summary>
+    /// Open a file and return its content.
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     public static string ImportLUA(string path)
     {
         using (var reader = new StreamReader(path))
@@ -39,12 +49,14 @@ public static class LuaCore
         }
     }
 
-
-    // toma un string y lo transforma en una funcion
+    /// <summary>
+    /// It receives text, if it is a Lua function, stores it for use and marks it with its name.
+    /// </summary>
+    /// <param name="code"></param>
     public static void DoString(string code)
     {
         var name = code.Split(' ').Last();
-        DynValue ret = script.DoString(code);
+        DynValue ret = Script.DoString(code);
 
         switch(ret.Type)
         {
@@ -62,21 +74,24 @@ public static class LuaCore
                 break;
 
             default:
-                Debug.Log("[Error] no se identifico el tipo del contenido");
+                Debug.LogWarning("<color=#CFB150>[Lua Error]</color>: Content type not identified.");
                 break;
         }
-        
     }
 
+    /// <summary>
+    /// It receives identifier text, if it contains a group of functions 
+    /// with said identifier, it executes them.
+    /// </summary>
+    /// <param name="key"></param>
     public static void DoFunction(string key)
     {
-        //MoonSharp.Interpreter.Coroutine coroutine;
-        List<DynValue> rets;
-        if (functions.TryGetValue(key, out rets))
+        List<DynValue> functions;
+        if (LuaCore.functions.TryGetValue(key, out functions))
         {
-            foreach (var ret in rets)
+            foreach (var func in functions)
             {
-                var coroutine = script.CreateCoroutine(ret).Coroutine;
+                var coroutine = Script.CreateCoroutine(func).Coroutine;
                 while (true)
                 {
                     coroutine.Resume();
@@ -87,10 +102,13 @@ public static class LuaCore
         }
         else
         {
-            Debug.Log("[Lua Error]: '" + key + "' no existe"); //no se si este debug es correcto
+            Debug.LogError("<color=#FF0000>[Lua Error]</color>: '" + key + "' don't exist.");
         }
     }
 
+    /// <summary>
+    /// Collects the methods marked with the "LuaCommand" attribute.
+    /// </summary>
     private static void CollectMetohdsFromScripts()
     {
         var methods = Assembly.GetExecutingAssembly()
@@ -108,7 +126,8 @@ public static class LuaCore
             .Concat(new[] { method.ReturnType })
             .ToArray()));
 
-            script.Globals[attribute.Id] = action;
+            Script.Globals[attribute.Id] = action;
         }
     }
+
 }

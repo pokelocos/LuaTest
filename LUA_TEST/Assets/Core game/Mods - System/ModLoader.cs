@@ -14,28 +14,50 @@ public static class ModLoader
 
     public static int ModsCount { get { return loadedMods.Count; } }
 
+    /// <summary>
+    /// R eturns the mod saved at index given by parameters.
+    /// </summary>
+    /// <param name="i"></param>
+    /// <returns></returns>
     public static Mod GetMod(int i)
     {
         return loadedMods[i];
     }
 
+    /// <summary>
+    /// Returns the saved mod with the name given by parameters.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static Mod GetMod(string name)
+    {
+        return loadedMods.First(m => name.Equals(m.basicInfo.name));
+    }
+
+    /// <summary>
+    /// This function is called when loading the game, Load mods.
+    /// </summary>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    public static void LoadMods()
+    public static void Init()
     {
 #if UNITY_EDITOR
         LoadModsFromProject();
 #else
         LoadModsFromRoot();
 #endif
-        //Debug.Log("[ModLoader]: ("+loadedMods.Count+") mod loaded.");
-    
     }
 
+    /// <summary>
+    /// Load the mods in the "Resource/Mods" path inside the project
+    /// </summary>
     private static void LoadModsFromProject()
     {
         LoadMods(Application.dataPath +"/Resources/Mods");
     }
 
+    /// <summary>
+    /// Load the mods in the "Mods" path of the game installation folder.
+    /// </summary>
     private static void LoadModsFromRoot()
     {
         var dataPath = Application.dataPath;
@@ -43,6 +65,10 @@ public static class ModLoader
         LoadMods(path + "/Mods");
     }
 
+    /// <summary>
+    /// load the mods in the path "Mods" given by parameter.
+    /// </summary>
+    /// <param name="root"></param>
     private static void LoadMods(string root)
     {
         System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(root);
@@ -95,12 +121,9 @@ public static class ModLoader
         mod.images = imgs;
 
         // load sounds
-        //AudioClip clip = null;
-        //var root = modRoot.FullName + "\\Content\\441499__matrixxx__rocket-01.wav";
-        //SfxImporter.Load(modRoot.FullName + "\\Content\\441499__matrixxx__rocket-01.wav", clip);
+        // XXXXX IMPLEMENTAR XXXXX
 
         //Load Lua
-        //Dictionary<string string> functions 
         var luaString = LuaCore.ImportLUA(modRoot.FullName + "\\main.lua");
         LuaCore.DoString(luaString);
 

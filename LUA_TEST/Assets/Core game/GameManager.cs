@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        LuaCore.script.Globals["MicroFactory"] = UserData.Create(this);
-        LuaCore.script.Globals["Game"] = UserData.Create(this);
-        LuaCore.script.Globals["MF"] = UserData.Create(this);
+        LuaCore.Script.Globals["MicroFactory"] = UserData.Create(this);
+        LuaCore.Script.Globals["Game"] = UserData.Create(this);
+        LuaCore.Script.Globals["MF"] = UserData.Create(this);
     }
 
     // Start is called before the first frame update

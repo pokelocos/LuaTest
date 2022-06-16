@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RA.UtilMonobehaviours
 {
     [MoonSharpUserData] 
-    public class ClockTimer : MonoBehaviour // ta wenisima asi
+    public class ClockTimer : MonoBehaviour
     {
         public bool activeOnLoad;
         public bool reverse;
@@ -27,7 +27,21 @@ namespace RA.UtilMonobehaviours
         public float Max { get { return max; } set { max = value; } }
         public float Multiplier { get { return multiplier; } set { multiplier = value; } }
 
-  
+        /// <summary>
+        /// Start clock operation.
+        /// </summary>
+        public void StartClock()
+        {
+            _active = true;
+        }
+
+        /// <summary>
+        /// Stop clock operation.
+        /// </summary>
+        public void StopClock()
+        {
+            _active = false;
+        }
 
         // Start is called before the first frame update
         private void Start()
@@ -50,16 +64,12 @@ namespace RA.UtilMonobehaviours
             }
         }
 
-        public void StartClock()
-        {
-            _active = true;
-        }
-
-        public void StopClock()
-        {
-            _active = false;
-        }
-
+        /// <summary>
+        /// Internal Update
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="m"></param>
         private void _Update(float start,float end,int m)
         {
             if (current == start)
