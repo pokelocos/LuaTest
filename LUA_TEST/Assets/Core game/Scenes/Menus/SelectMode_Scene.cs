@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectModeScene : MonoBehaviour
+public class SelectMode_Scene : MonoBehaviour
 {
     private GameMode modeSelected;
     
@@ -17,7 +17,6 @@ public class SelectModeScene : MonoBehaviour
     private void Awake()
     {
         playButton.interactable = modeSelected != null;
-        //playButton.onClick.AddListener(()=>{ InitGameRun(modeSelected); });
     }
 
     public void SelectMode(GameMode gameMode) // button function

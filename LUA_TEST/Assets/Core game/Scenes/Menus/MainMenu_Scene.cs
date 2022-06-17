@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DataSystem;
 using UnityEngine.SceneManagement;
 
-public class MainMenu_Controller : MonoBehaviour
+public class MainMenu_Scene : MonoBehaviour
 {
     public Button continueButton;
 
