@@ -8,9 +8,9 @@ using UnityEngine;
 public class NodeController : MonoBehaviour
 {
     [SerializeField] private NodeView nodeView;
-    [SerializeField] private NodeData data;
+    [SerializeField] private ClockTimer timer;
 
-    private ClockTimer timer;
+    private NodeData data;
 
     //private List<ConnectionController> input = new List<ConnectionController>();
     //private List<ConnectionController> output = new List<ConnectionController>();
