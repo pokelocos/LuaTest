@@ -485,6 +485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pref
       objectReference: {fileID: 0}
+    - target: {fileID: 2386454317431012117, guid: 61decc79a40917d4aa6f483116dae168, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61decc79a40917d4aa6f483116dae168, type: 3}
 --- !u!1 &615544756 stripped
@@ -577,6 +581,10 @@ PrefabInstance:
     - target: {fileID: 2386454317431012117, guid: 61decc79a40917d4aa6f483116dae168, type: 3}
       propertyPath: m_Name
       value: pref (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386454317431012117, guid: 61decc79a40917d4aa6f483116dae168, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61decc79a40917d4aa6f483116dae168, type: 3}
@@ -691,7 +699,7 @@ GameObject:
   - component: {fileID: 1141813772}
   - component: {fileID: 1141813771}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameManager Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,8 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7738aaf7992534f8fd6a127b90d423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  node_Pref: {fileID: 0}
-  show: {fileID: 0}
+  show: {fileID: 2084415498}
 --- !u!4 &1141813772
 Transform:
   m_ObjectHideFlags: 0

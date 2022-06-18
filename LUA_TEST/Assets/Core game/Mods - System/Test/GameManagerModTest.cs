@@ -9,10 +9,8 @@ using UnityEngine.UI;
 [MoonSharpUserData]
 public class GameManagerModTest : MonoBehaviour
 {
-
-    public SpriteRenderer node_Pref;
-
     public Text show;
+
     private void Awake()
     {
         LuaCore.Script.Globals["MicroFactory"] = UserData.Create(this);
@@ -23,17 +21,11 @@ public class GameManagerModTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ResourcesLoader.alloModData = true;
+        ResourcesLoader.LoadDataGame();
 
-        
+        var a = 2;
     }
 
-    public void SpawnNode(string infoName)
-    {
-        var infoNode = GameInfoData.GetInfoNodeByName(infoName);
-
-        var node = Instantiate(node_Pref);
-        node.color = Commons.StrToColor(infoNode.backgroundColor);
-    }
-    
 }
 
