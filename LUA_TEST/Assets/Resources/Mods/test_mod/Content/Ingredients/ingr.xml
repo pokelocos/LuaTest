@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <IngredientInfo>
-    <Name>Trigo</Name>
+    <Name>TrigoPixelado</Name>
     <Color1>#ff00ff00</Color1>
     <Color2>#ff00ff00</Color2>
-    <Value>5.0</Value>
+    <Value>5</Value>
     <Tags>
-        <Item>asdsad</Item>
-        <Item>ergergverv</Item>
+        <Item>Pixelado</Item>
+        <Item>Vegetal</Item>
     </Tags>
 </IngredientInfo>
