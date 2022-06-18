@@ -23,15 +23,16 @@ public class IngredientData : ScriptableObject
         return this.ingredientName == o.ingredientName;
     }
 
-    public static void CreateFromInfo(IngredientInfo info)
+    public static IngredientData CreateFromInfo(IngredientInfo info)
     {
-        var inst = ScriptableObject.CreateInstance("tempData_" + info.name) as IngredientData;
+        var inst = ScriptableObject.CreateInstance("IngredientData") as IngredientData;
         inst.ingredientName = info.name;
         inst.value = info.value;
         inst.primaryColor =  RA.Commons.StrToColor(info.color1);
         inst.secondaryColor = RA.Commons.StrToColor(info.color2);
-
         inst.tags = info.tags.ToList();
+
+        return inst;
     }
 }
 
