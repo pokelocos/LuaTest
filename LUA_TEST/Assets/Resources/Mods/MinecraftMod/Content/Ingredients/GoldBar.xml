@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<IngredientInfo>
+    <Name>GoldBar</Name>
+    <Color1>#ff00ff00</Color1>
+    <Color2>#ff00ff00</Color2>
+    <Value>10</Value>
+    <Tags>
+        <Item>Gold</Item>
+        <Item>Minecraft</Item>
+    </Tags>
+</IngredientInfo>

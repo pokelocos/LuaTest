@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<IngredientInfo>
+    <Name>IronBar</Name>
+    <Color1>#ff00ff00</Color1>
+    <Color2>#ff00ff00</Color2>
+    <Value>5</Value>
+    <Tags>
+        <Item>Iron</Item>
+        <Item>Minecraft</Item>
+    </Tags>
+</IngredientInfo>
