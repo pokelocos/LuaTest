@@ -22,6 +22,7 @@ public static class ResourcesLoader
 
     public static int NodeAmount() => nodeDatas.Count;
     public static NodeData GetNode(string name) => nodeDatas.First(x => x.name.Equals(name));
+    public static NodeData GetNode(int i) => nodeDatas[i];
 
     //public static int EffectAmount() => EffectDatas.Count;
     //public static EffectData GetEffect(string name) => effectDatas.First(x => x.name.Equals(name));
