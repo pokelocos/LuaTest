@@ -11,6 +11,12 @@ public class GameManagerModTest : MonoBehaviour
 {
     public Text show;
 
+    [Header("Basics prefs")]
+    [SerializeField] private NodeController node_Pref;
+    //[SerializeField] private EffectController effect_Pref;
+    [SerializeField] private ConnectionController connetion_Pref;
+
+
     private void Awake()
     {
         LuaCore.Script.Globals["MicroFactory"] = UserData.Create(this);
@@ -23,8 +29,15 @@ public class GameManagerModTest : MonoBehaviour
     {
         ResourcesLoader.alloModData = true;
         ResourcesLoader.LoadDataGame();
+    }
 
-        var a = 2;
+    public void CreateNodeRandom()
+    {
+        var randIndex = Random.Range(0, ResourcesLoader.NodeAmount());
+        var data = ResourcesLoader.GetNode(randIndex);
+        var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
+        node.Init(data, 0);
+        nodes.Add(node);
     }
 
 }
