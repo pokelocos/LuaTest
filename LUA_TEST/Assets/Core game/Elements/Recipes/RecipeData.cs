@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New ingredient data", menuName = "MicroFactory/Ingredient Data...")]
+[CreateAssetMenu(fileName = "New recipe data", menuName = "MicroFactory/Recipe Data...")]
 public class RecipeData : ScriptableObject
 {
     [SerializeField] public float time; 
