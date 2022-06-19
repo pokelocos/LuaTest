@@ -26,6 +26,7 @@ namespace RA.UtilMonobehaviours
         public float Current { get { return current; } set { current = value; } }
         public float Max { get { return max; } set { max = value; } }
         public float Multiplier { get { return multiplier; } set { multiplier = value; } }
+        public bool IsActive() => _active;
 
         /// <summary>
         /// Start clock operation.
