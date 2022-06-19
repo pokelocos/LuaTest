@@ -19,33 +19,17 @@ public class NodeController : MonoBehaviour //, ISelectableObject
     private Inventory inventory = new Inventory();
     private RecipeData current;
 
+    public delegate void ConnectionEvent(ConnectionController connection, NodeController node);
+    public event ConnectionEvent OnConnect;
+    public event ConnectionEvent OnDisconnect;
+    public event ConnectionEvent OnReceiveProduct;
 
     private void Awake()
     {
         nodeView = GetComponent<NodeView>();
         timer = GetComponent<ClockTimer>();
-    }
 
-    private void OnReciveProduct()
-    {
-       
-    }
-
-    private void OnEndProduction()
-    {
-
-    }
-
-    private bool CanProduce()
-    {
-        if (timer.IsActive())
-            return false;
-
-        var ingredients = current.inputIngredients;
-        for (int i = 0; i < ingredients.Count; i++)
-        {
-
-        }
+        this.InitEvents();
     }
 
     public void Init(NodeData data, float startTime)
@@ -61,11 +45,35 @@ public class NodeController : MonoBehaviour //, ISelectableObject
         output.Remove(connection);
     }
 
+    private void InitEvents()
+    {
+        // Node Events
+        //timer.OnStart += (n) => { };
+        timer.OnEnd += (n) => { TryStartProduction(); };
+
+        // Connection Event
+        OnReceiveProduct += (c, n) => { TryStartProduction(); };
+    }
+
+    private bool TryStartProduction()
+    {
+        if (timer.IsActive()) // ya esta producionedo
+            return false;
+
+        var ingredients = current.inputIngredients;
+        if (!inventory.HaveIngredients(ingredients)) // no tengo los ingredientes
+            return false;
+
+        inventory.RemoveIngedients(ingredients);
+        timer.StartClock();
+        return true;
+    }
+
     private class Inventory
     {
         private List<Report> receivedIngredient = new List<Report>();
 
-        private void TryAddIngredient(ConnectionController from, IngredientData ingredient) // change name to "TryAddReport" (??)
+        protected void TryAddIngredient(ConnectionController from, IngredientData ingredient) // change name to "TryAddReport" (??)
         {
             var reports = (from r in receivedIngredient 
                      where r.@from == @from 
@@ -81,7 +89,7 @@ public class NodeController : MonoBehaviour //, ISelectableObject
             }
         }
 
-        private bool HaveIngredients(List<IngredientData> ingredients)
+        public bool HaveIngredients(List<IngredientData> ingredients)
         {
             var received = new List<Report>(receivedIngredient);
             for (int i = 0; i < ingredients.Count; i++)
@@ -98,11 +106,20 @@ public class NodeController : MonoBehaviour //, ISelectableObject
             return true;
         }
 
-        private void TryRemoveIngedient(IngredientData ingredient)
+        public void RemoveIngedient(IngredientData ingredient)
         {
-            //<<
+            var report = receivedIngredient.First(x => x.ingredient == ingredient);
+            receivedIngredient.Remove(report);
         }
 
+        public void RemoveIngedients(List<IngredientData> ingredients)
+        {
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                RemoveIngedient(ingredients[i]);
+            }
+        }
+        
         private struct Report
         {
             public ConnectionController from;
