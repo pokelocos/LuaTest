@@ -27,8 +27,8 @@ public class GameManagerModTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResourcesLoader.alloModData = true;
-        ResourcesLoader.LoadDataGame();
+        ResourcesLoader.alloModData = false;
+        ResourcesLoader.LoadDataGame(); // esto tiene que iniciarse al momento de iniciar la partida SUPER IMPORTANTE
     }
 
     public void CreateNodeRandom()
@@ -37,7 +37,7 @@ public class GameManagerModTest : MonoBehaviour
         var data = ResourcesLoader.GetNode(randIndex);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, 0);
-        nodes.Add(node);
+        //nodes.Add(node);
     }
 
 }
