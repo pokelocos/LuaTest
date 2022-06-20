@@ -6,7 +6,7 @@ using UnityEngine;
 public static class ResourcesLoader
 {
     public static bool allowBaseData = true;
-    public static bool alloModData = false;
+    public static bool allowModData = false;
 
     private static List<IngredientData> ingredientDatas = new List<IngredientData>();
     private static List<RecipeData> recipeDatas = new List<RecipeData>();
@@ -40,7 +40,7 @@ public static class ResourcesLoader
             LoadBaseGameData();
         }
 
-        if(alloModData)
+        if(allowModData)
         {
             LoadModData();
         }

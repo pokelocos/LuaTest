@@ -27,7 +27,7 @@ public class GameManagerModTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResourcesLoader.alloModData = false;
+        ResourcesLoader.allowModData = false;
         ResourcesLoader.LoadDataGame(); // esto tiene que iniciarse al momento de iniciar la partida SUPER IMPORTANTE
     }
 

@@ -48,6 +48,9 @@ public class NodeController : MonoBehaviour //, ISelectableObject
     private void Start()
     {
         this.InitEvents();
+         
+        if(ResourcesLoader.allowModData)
+            this.InitLuaEvents();
 
         SelectCurrentRecipe();
         TryStartProduction();
@@ -68,6 +71,10 @@ public class NodeController : MonoBehaviour //, ISelectableObject
         OnDisconnect?.Invoke(connection,this);
     }
 
+    /// <summary>
+    /// Inicializa los evnetos importantes relacionados al 
+    /// funcionamiento interno del nodo y sus componentes.
+    /// </summary>
     private void InitEvents()
     {
         // Node Events
@@ -86,7 +93,17 @@ public class NodeController : MonoBehaviour //, ISelectableObject
     }
 
     /// <summary>
-    /// Revisa las recipes que tiene el nodo y se queda con la que pueda hacer dependiendo delos inputsa que tenga
+    /// Inicializa los evnetos importantes relacionados al 
+    /// las funciones añadidas atravez de LUA.
+    /// </summary>
+    private void InitLuaEvents()
+    {
+
+    }
+
+    /// <summary>
+    /// Revisa las recipes que tiene el nodo y se queda con
+    /// la que pueda hacer dependiendo de los inputs que tenga
     /// </summary>
     /// <returns></returns>
     private void SelectCurrentRecipe()
@@ -114,15 +131,26 @@ public class NodeController : MonoBehaviour //, ISelectableObject
         }
     }
 
+    /// <summary>
+    /// Intenta producir, retornara verdadero si lo logra, 
+    /// falso si ya esta produciendo o no tiene la capacidad 
+    /// de producir la receta con los materiles que tiene
+    /// </summary>
+    /// <returns></returns>
     private bool TryStartProduction()
     {
-        if (timer.IsActive()) // ya esta producionedo
+        // si ya esta producionedo
+        if (timer.IsActive()) 
             return false;
+
         if (currentRecipe == null)
             return false;
+
         var ingredients = currentRecipe.inputIngredients;
-        if (!inventory.HaveIngredients(ingredients)) // no tengo los ingredientes
+        // si no tengo los ingredientes
+        if (!inventory.HaveIngredients(ingredients)) 
             return false;
+
         inventory.RemoveIngedients(ingredients);
         timer.StartClock();
         return true;
