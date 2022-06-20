@@ -79,11 +79,11 @@ namespace RA.UtilMonobehaviours
             current += Time.deltaTime * multiplier * m;
             if ((m *current) >= (m *end))
             {
-                OnEnd?.Invoke(this);
-                current = start;
-
                 if (!loop)
                     _active = false;
+
+                OnEnd?.Invoke(this);
+                current = start;
             }
 
             OnUpdate?.Invoke(this);
