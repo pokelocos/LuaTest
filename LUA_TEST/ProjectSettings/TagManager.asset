@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1953966403
+    locked: 0
+  - name: BackFeedback
+    uniqueID: 502572023
+    locked: 0
+  - name: Connections
+    uniqueID: 3818004057
+    locked: 0
+  - name: MiddleFeedback
+    uniqueID: 2581193155
+    locked: 0
+  - name: Nodes
+    uniqueID: 1849002567
+    locked: 0
+  - name: FrontFeedback
+    uniqueID: 1172700017
+    locked: 0

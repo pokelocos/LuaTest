@@ -20,6 +20,17 @@ public class ConnectionController : MonoBehaviour //, ISelectableObject
     public NodeController GetoutputNode() => to;
     public IngredientData GetIngredientAllowed() => ingredientAllowed;
 
+
+    public void Awake()
+    {
+        
+    }
+
+    public void InitEvent()
+    {
+
+    }
+
     public void Connect(NodeController from,NodeController to,IngredientData ingredientAllowed)
     {
         this.from = from;

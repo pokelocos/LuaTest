@@ -11,7 +11,6 @@ public class MoneyFeedback : ExtraFeedback
     [SerializeField] private TextMesh textShadow;
     [SerializeField] private Animator animator;
 
-
     public override void Show(Transform target,params object[] prms)
     {
         base.Show(target);

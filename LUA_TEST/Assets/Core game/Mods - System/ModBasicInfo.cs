@@ -15,13 +15,6 @@ public struct ModBasicInfo
     [XmlElement(ElementName = "Thumnail")] public Sprite thumnail;
 }
 
-
-
-
-
-
-
-
 [XmlRoot(ElementName = "GameModeInfo")]
 public struct GameModeInfo
 {
