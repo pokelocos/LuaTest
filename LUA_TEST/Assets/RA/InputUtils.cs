@@ -17,24 +17,24 @@ namespace RA.Inputs
         {
             if (UnityEngine.Input.GetMouseButtonDown(input))
             {
-                
-                float last;
-                if (lastInputs.TryGetValue(input, out last))
+                if (!lastInputs.ContainsKey(input))
                 {
-                    Debug.Log("B");
                     lastInputs.Add(input,Time.unscaledTime);
                     return false;
                 }
-                Debug.Log("A: " + last);
 
+                float last;
+                lastInputs.TryGetValue(input,out last);
                 float delta = Time.unscaledTime - last;
-                Debug.Log("C: "+ delta);
 
                 if (delta <= DOUBLE_CLICK_TIME)
                 {
-                    Debug.Log("D");
-                    lastInputs.Add(input, Time.unscaledTime);
                     return true;
+                }
+                else
+                {
+                    lastInputs[input] = Time.unscaledTime;
+                    return false;
                 }
             }
             return false;
