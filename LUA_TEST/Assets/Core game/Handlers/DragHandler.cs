@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DragHandler : MonoBehaviour
 {
-    private Transform currentTransform;
     private IDrageable current;
 
     private float timeDeltaDrag = 0.2f;
@@ -25,7 +24,6 @@ public class DragHandler : MonoBehaviour
                 if (drageable != null)
                 {
                     current = drageable;
-                    currentTransform = target.transform;
                     lastTime = Time.unscaledTime;
                     lastPos = mousePosition;
                 }
@@ -33,15 +31,17 @@ public class DragHandler : MonoBehaviour
         }
         else if (Input.GetMouseButton(input))
         {
+            if (current == null)
+                return;
+
             if(lastTime + timeDeltaDrag <= Time.unscaledTime || distDeltaDrag <= Vector3.Distance(lastPos,mousePosition))
             {
-                currentTransform.position = Vector2.Lerp(currentTransform.position, mousePosition, current.DragSpeed() * Time.unscaledDeltaTime);
+                current.SetPosition(mousePosition);
             }
         }
         else if (Input.GetMouseButtonUp(input))
         {
             current = null;
-            currentTransform = null;
             lastTime = Time.unscaledTime;
             lastPos = mousePosition;
         }
@@ -52,4 +52,5 @@ interface IDrageable
 {
     public float DragSpeed();
     public bool CanDrag();
+    public void SetPosition(Vector3 position);
 }
