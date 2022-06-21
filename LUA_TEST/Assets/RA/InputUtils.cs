@@ -7,7 +7,7 @@ using System;
 
 namespace RA.Inputs
 {
-    public static class InputHandler
+    public static class InputUtils
     {
         private static float DOUBLE_CLICK_TIME = 0.15f;
 
@@ -39,7 +39,16 @@ namespace RA.Inputs
             }
             return false;
         }
+
+        public static GameObject GetOverObject2D()
+        {
+            var point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var rayhit = Physics2D.Raycast(point, Vector2.zero);
+            if (rayhit.collider != null)
+            {
+                return rayhit.collider.gameObject;
+            }
+            return null;
+        }
     }
-
-
 }
