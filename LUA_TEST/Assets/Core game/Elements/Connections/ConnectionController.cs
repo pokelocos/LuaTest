@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnectionController : MonoBehaviour //, ISelectableObject
+public class ConnectionController : MonoBehaviour
 {
     [SerializeField] private Gradient fadeGradient; // ??? esto es para cambiar el color de si el nodo recividor puede o no recivir o no ???
 
