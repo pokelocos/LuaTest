@@ -1,3 +1,4 @@
+using RA.Inputs;
 using RA.UtilMonobehaviours;
 using System;
 using System.Collections;
@@ -9,15 +10,15 @@ using UnityEngine;
 
 [RequireComponent(typeof(NodeView))]
 [RequireComponent(typeof(ClockTimer))]
-public class NodeController : MonoBehaviour //, ISelectableObject
+public class NodeController : MonoBehaviour
 {
     private NodeView nodeView;
     private ClockTimer timer;
 
     private NodeData data;
 
-    private List<ConnectionController> input = new List<ConnectionController>();
-    private List<ConnectionController> output = new List<ConnectionController>();
+    private List<ConnectionController> inputs = new List<ConnectionController>();
+    private List<ConnectionController> outputs = new List<ConnectionController>();
     private Inventory inventory = new Inventory();
     private RecipeData currentRecipe; // << esta varible puede ser problematica por posible NULL
 
@@ -25,6 +26,11 @@ public class NodeController : MonoBehaviour //, ISelectableObject
     public event ConnectionEvent OnConnect;
     public event ConnectionEvent OnDisconnect;
     public event ConnectionEvent OnReceiveProduct;
+
+    public NodeData Data => data;
+    public int InputCount => inputs.Count();
+    public int OutputCount => outputs.Count();
+
 
     public RecipeData CurrentRecipe
     {
@@ -56,6 +62,24 @@ public class NodeController : MonoBehaviour //, ISelectableObject
         TryStartProduction();
     }
 
+   
+    private void OnMouseOver()
+    {
+        var leftInput = 0;
+        var rightInput = 1;
+
+        if (InputUtils.MouseDoubleCLick(leftInput))
+        {
+            Debug.Log("Double left");
+        }
+
+        if (InputUtils.MouseDoubleCLick(rightInput))
+        {
+            Debug.Log("Double Right");
+        }
+
+    }
+
     public void Init(NodeData data, float startTime)
     {
         this.data = data;
@@ -65,8 +89,8 @@ public class NodeController : MonoBehaviour //, ISelectableObject
 
     public void RemoveConnection(ConnectionController connection)
     {
-        input.Remove(connection); // esto podria estar con un if els y ais sacar eventos UwU
-        output.Remove(connection);
+        inputs.Remove(connection); // esto podria estar con un if els y ais sacar eventos UwU
+        outputs.Remove(connection);
 
         OnDisconnect?.Invoke(connection,this);
     }
@@ -111,7 +135,7 @@ public class NodeController : MonoBehaviour //, ISelectableObject
         data.recipes.OrderByDescending(r => r.inputIngredients.Count());
         currentRecipe = null;
 
-        var ings = input.Select(x => x.GetIngredientAllowed());
+        var ings = inputs.Select(x => x.GetIngredientAllowed());
         var recipes = data.recipes;
         for (int i = 0; i < recipes.Count(); i++)
         {
@@ -121,7 +145,7 @@ public class NodeController : MonoBehaviour //, ISelectableObject
                 break;
             }
 
-            bool hasMatch = input.Select(x => x.GetIngredientAllowed())
+            bool hasMatch = inputs.Select(x => x.GetIngredientAllowed())
                           .Intersect(ings).Any();
             if (hasMatch)
             {
