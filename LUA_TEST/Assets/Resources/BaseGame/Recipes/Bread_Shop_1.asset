@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0feba79b63c61254ba141524542f9283, type: 3}
-  m_Name: Bakery_1
+  m_Name: Bread_Shop_1
   m_EditorClassIdentifier: 
   time: 4
+  productionProfit: 10
   inputIngredients:
-  - {fileID: 11400000, guid: aad2f2e2cae022a469f25492d842e95d, type: 2}
-  otuputingredients:
   - {fileID: 11400000, guid: a3756c9ea6b29cb4e82f8dc5d8a13d4f, type: 2}
+  otuputingredients:
+  - {fileID: 0}
