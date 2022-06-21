@@ -80,7 +80,7 @@ public static class ModLoader
             {
                 var mod = LoadXmlMod(directory[i]);
                 loadedMods.Add(mod);
-                Debug.Log("[ModLoader]:'" + mod.basicInfo.name + "' mod has been loaded:\n" + mod.DebugInfo());
+                Debug.Log("<color=#2283FF>[ModLoader]</color> <b>" + mod.basicInfo.name + "</b> mod has been loaded:\n" + mod.DebugInfo());
             }
             catch
             {

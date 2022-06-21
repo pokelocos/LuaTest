@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,23 +13,32 @@ public static class ResourcesLoader
     private static List<RecipeData> recipeDatas = new List<RecipeData>();
     private static List<NodeData> nodeDatas = new List<NodeData>();
     private static List<EffectData> effectDatas = new List<EffectData>();
-    // private static List<GameModeData> GameModeDatas = new List<GameModeData>();
+    // private static List<GameModeData> gameModeDatas = new List<GameModeData>();
+    // private static List<TokensData> tokensDatas = new List<TokensData>(); // añadir ??
 
+    // Ingredients
     public static int IngredientAmount() => ingredientDatas.Count;
     public static IngredientData GetIngredient(string name) => ingredientDatas.First(x => x.ingredientName.Equals(name));
+    public static IngredientData[] GetIngredientByTag(string tag) => ingredientDatas.Where(x => x.tags.Contains(tag)).ToArray();
 
+    // Recipes
     public static int RecipeAmount() => recipeDatas.Count;
     public static RecipeData GetRecipe(string name) => recipeDatas.First(x => x.name.Equals(name)); // name ??
 
+    // Nodes
     public static int NodeAmount() => nodeDatas.Count;
     public static NodeData GetNode(string name) => nodeDatas.First(x => x.name.Equals(name));
     public static NodeData GetNode(int i) => nodeDatas[i];
+    public static NodeData[] GetNodesByTag(string tag) => nodeDatas.Where(x => x.tags.Contains(tag)).ToArray();
 
+    // Effects
     public static int EffectAmount() => effectDatas.Count;
     public static EffectData GetEffect(string name) => effectDatas.First(x => x.name.Equals(name));
     public static EffectData GetEffect(int i) => effectDatas[i];
 
-    //public static GameModeData GetGameMode(string name) => gameModeDatas.First(x => x.name.Equals(name)); 
+    // GameModes
+    // IMPLEMENTAR
+    // public static GameModeData GetGameMode(string name) => gameModeDatas.First(x => x.name.Equals(name)); 
 
     /// <summary>
     /// Load the data of the game elements.

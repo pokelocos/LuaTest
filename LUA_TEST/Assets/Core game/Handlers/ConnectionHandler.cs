@@ -43,9 +43,7 @@ public class ConnectionHandler : MonoBehaviour
         else if (Input.GetMouseButtonUp(input))
         {
             EndDragConnection(mousePosition);
-            currentNode = null;
-            otherNode = null;
-            currentIngredient = null;
+            ClearReferences();
         }
     }
 
@@ -117,6 +115,14 @@ public class ConnectionHandler : MonoBehaviour
         //return;
 
         CreateConnection(currentNode,otherNode,currentIngredient);
+    }
+
+    private void ClearReferences()
+    {
+        connectionPreview.gameObject.SetActive(false);
+        currentNode = null;
+        otherNode = null;
+        currentIngredient = null;
     }
 
     private void CreateConnection(NodeController from, NodeController to,IngredientData ingredient) // no se si esto deba estar aqui pero weno

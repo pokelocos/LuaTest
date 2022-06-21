@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Core game/Mods - System/Examples/SampleMod.unity
+    path: Assets/Core game/Scenes/Tests/SampleMod.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

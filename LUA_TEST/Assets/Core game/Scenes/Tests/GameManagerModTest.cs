@@ -31,14 +31,31 @@ public class GameManagerModTest : MonoBehaviour
         ResourcesLoader.LoadDataGame(); // esto tiene que iniciarse al momento de iniciar la partida SUPER IMPORTANTE
     }
 
+    public void CreateNodeByIndex(int i)
+    {
+        var data = ResourcesLoader.GetNode(i);
+        var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
+        node.Init(data, 0);
+    }
+
+    public void CreateNodeByName(string name)
+    {
+        var data = ResourcesLoader.GetNode(name);
+        var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
+        node.Init(data, 0);
+    }
+
+    public void CreateNodeByTag(string s)
+    {
+        var nodes = ResourcesLoader.GetNodesByTag(s);
+        var node = nodes[Random.Range(0, nodes.Length)];
+        CreateNodeByName(node.name);
+    }
+
     public void CreateNodeRandom()
     {
         var randIndex = Random.Range(0, ResourcesLoader.NodeAmount());
-        var data = ResourcesLoader.GetNode(randIndex);
-        var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
-        node.Init(data, 0);
-        //nodes.Add(node);
+        CreateNodeByIndex(randIndex);
     }
-
 }
 
