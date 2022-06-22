@@ -30,11 +30,24 @@ public class NodeController : MonoBehaviour
     public NodeData Data => data;
     public int InputCount => inputs.Count();
     public int OutputCount => outputs.Count();
-    public void AddInput(ConnectionController c) => inputs.Add(c);
-    public void AddOutput(ConnectionController c) => outputs.Add(c);
 
 
-    public RecipeData CurrentRecipe
+    public int MaxInput => data.MaxInput;
+    public int MaxOutput => data.MaxOutput;
+
+    public void AddInput(ConnectionController connection)
+    {
+        inputs.Add(connection);
+        SelectCurrentRecipe();
+        // call event
+    }
+    public void AddOutput(ConnectionController connection)
+    {
+        outputs.Add(connection);
+        // call event
+    }
+
+    public RecipeData CurrentRecipe // revisar las referencias de esto, suena poco seguro
     {
         get => currentRecipe;
         private set
@@ -97,17 +110,31 @@ public class NodeController : MonoBehaviour
         }
     }
 
-    public void Addingredient(ConnectionController c,IngredientData ing)
+    public void Addingredient(ConnectionController connection,IngredientData ingredient)
     {
-        inventory.TryAddIngredient(c, ing);
+        if(inventory.TryAddIngredient(connection, ingredient))
+        {
+            // call event " ingrediente añadido"
+            TryStartProduction();
+        }
+        else
+        {
+            // call event " error al añadir"
+        }
+
     }
 
     public void RemoveConnection(ConnectionController connection)
     {
-        inputs.Remove(connection); // esto podria estar con un if els y ais sacar eventos UwU
-        outputs.Remove(connection);
-
-        OnDisconnect?.Invoke(connection,this);
+        if(inputs.Remove(connection))
+        {
+            SelectCurrentRecipe();
+            // call event "Remove input"
+        }
+        else if(outputs.Remove(connection))
+        {
+            // call event "Remove Output"
+        }
     }
 
     public bool CannConnect(IngredientData newIngredient)
@@ -140,9 +167,6 @@ public class NodeController : MonoBehaviour
         timer.OnUpdate += (clock) => { nodeView.SetBarAmount((clock.Current / currentRecipe.time)); };
 
         // Connection Event
-        OnReceiveProduct += (c, n) => { TryStartProduction(); };
-        OnConnect += (c, n) => { SelectCurrentRecipe(); };
-        OnDisconnect += (c, n) => { SelectCurrentRecipe(); };
 
         // Inventory event
         //inventory.OnSuccessReceived += (c) => { };
@@ -221,7 +245,7 @@ public class NodeController : MonoBehaviour
         public event InventoryEvent OnSuccessReceived;
         public event InventoryEvent OnFailReceived;
 
-        public void TryAddIngredient(ConnectionController from, IngredientData ingredient) // change name to "TryAddReport" (??)
+        public bool TryAddIngredient(ConnectionController from, IngredientData ingredient) // change name to "TryAddReport" (??)
         {
             var reports = (from r in receivedIngredient 
                      where r.@from == @from 
@@ -230,11 +254,13 @@ public class NodeController : MonoBehaviour
             if(reports.Count <= 0) 
             {
                 receivedIngredient.Add(new Report(from, ingredient));
-                OnSuccessReceived?.Invoke(from);
+                OnSuccessReceived?.Invoke(from); // ??
+                return true;
             }
             else
             {
                 OnFailReceived?.Invoke(from);
+                return false;
             }
         }
 

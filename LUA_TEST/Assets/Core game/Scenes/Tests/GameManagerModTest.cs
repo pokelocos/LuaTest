@@ -13,9 +13,7 @@ public class GameManagerModTest : MonoBehaviour
 
     [Header("Basics prefs")]
     [SerializeField] private NodeController node_Pref;
-    //[SerializeField] private EffectController effect_Pref;
-    [SerializeField] private ConnectionController connetion_Pref;
-
+    [SerializeField] private InputField inputfieldName;
 
     private void Awake()
     {
@@ -29,6 +27,16 @@ public class GameManagerModTest : MonoBehaviour
     {
         ResourcesLoader.allowModData = false;
         ResourcesLoader.LoadDataGame(); // esto tiene que iniciarse al momento de iniciar la partida SUPER IMPORTANTE
+    }
+
+    public void CreateNodeByName()
+    {
+        var data = ResourcesLoader.GetNode(inputfieldName.text);
+        if (data == null)
+            return;
+
+        var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
+        node.Init(data, 0);
     }
 
     public void CreateNodeByIndex(int i)
