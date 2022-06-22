@@ -8,9 +8,9 @@ public class IngredientView : MonoBehaviour
     [SerializeField] private SpriteRenderer background;
     [SerializeField] private SpriteRenderer border;
 
-    public void SetView(ConnectionData data)
+    public void SetView(IngredientData data)
     {
-        SetColor(data.bgColor, data.borderColor);
+        SetColor(data.primaryColor, data.secondaryColor);
     }
 
     public void SetColor(Color body, Color border)
