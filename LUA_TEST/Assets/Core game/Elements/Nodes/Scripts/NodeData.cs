@@ -18,21 +18,27 @@ public class NodeData : ScriptableObject // atributos publico (???)
     public Color iconColor = Color.white;
     public Color timerColor = Color.white;
 
-    public int inputMax;
-    public int outputMax;
+    private int inputMax;
+    private int outputMax;
+
+    public int MaxInput => inputMax;
+    public int MaxOutput => outputMax;
+
+    public void Awake()
+    {
+        inputMax = recipes.Max(x => x.inputIngredients.Count);
+        outputMax = recipes.Max(x => x.outputIngredients.Count);
+    }
 
     public static NodeData CreateFromInfo(NodeInfo info)
     {
         var inst = ScriptableObject.CreateInstance("NodeData") as NodeData;
         inst.nodeName = info.name;
         inst.description = info.description;
-        //inst.icon = GetIcon(info.iconName);
+        inst.icon = ModLoader.GetImage(info.iconName);
         inst.bgColor = Commons.StrToColor(info.backgroundColor);
         inst.iconColor = Commons.StrToColor(info.iconName);
         inst.timerColor = Commons.StrToColor(info.timerColor);
-
-        //inst.inputMax = info.inputMax;
-        //inst.outputMax = info.outputMax;
 
         for (int i = 0; i < info.recipes.Count; i++)
         {

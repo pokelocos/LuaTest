@@ -8,11 +8,24 @@ using System.Xml.Serialization;
 using System.Linq;
 using System;
 
-public static class ModLoader 
+public static class ModLoader // change name to data loader ??
 {
     private static List<Mod> loadedMods = new List<Mod>();
 
     public static int ModsCount { get { return loadedMods.Count; } }
+
+    public static Sprite GetImage(string s)
+    {
+        for (int i = 0; i < loadedMods.Count; i++)
+        {
+            Sprite sprite;
+            if(loadedMods[i].images.TryGetValue(s,out sprite))
+            {
+                return sprite;
+            }
+        }
+        return null;
+    }
 
     /// <summary>
     /// R eturns the mod saved at index given by parameters.
@@ -130,7 +143,6 @@ public static class ModLoader
         return mod;
     }
 
-    // las clases "LoadRecursiveXXX" pueden ser 3 aciones diferentes y una unica funcion recorra las carpetas de manera recursiva
     private static Dictionary<string,AudioClip> LoadRecursiveSFX(DirectoryInfo dir, Dictionary<string,AudioClip> SFXs)
     {
         var files = dir.GetFiles();
