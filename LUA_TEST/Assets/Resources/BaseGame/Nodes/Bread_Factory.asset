@@ -18,9 +18,9 @@ MonoBehaviour:
   tags:
   - Processor
   recipes:
-  - {fileID: 11400000, guid: 81de28f32d58a9140b7b2b1ebc22732f, type: 2}
+  - {fileID: 11400000, guid: 78fb4d1e40d9e9046b424b489d6373a8, type: 2}
   bgColor: {r: 0.20784312, g: 0.6499109, b: 0.94509804, a: 1}
   iconColor: {r: 1, g: 1, b: 1, a: 1}
   timerColor: {r: 1, g: 1, b: 1, a: 1}
-  inputMax: 7
+  inputMax: 3
   outputMax: 7

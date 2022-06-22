@@ -18,7 +18,7 @@ MonoBehaviour:
   tags:
   - Seller
   recipes:
-  - {fileID: 11400000, guid: 81de28f32d58a9140b7b2b1ebc22732f, type: 2}
+  - {fileID: 11400000, guid: 4278197bf10853d4691da915c90cceed, type: 2}
   bgColor: {r: 0.32484868, g: 0.38384652, b: 0.9433962, a: 1}
   iconColor: {r: 1, g: 1, b: 1, a: 1}
   timerColor: {r: 1, g: 1, b: 1, a: 1}
