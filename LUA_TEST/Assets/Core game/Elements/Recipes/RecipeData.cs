@@ -10,7 +10,7 @@ public class RecipeData : ScriptableObject
     [SerializeField] public float productionProfit = 0;
 
     [SerializeField] public List<IngredientData> inputIngredients = new List<IngredientData>();
-    [SerializeField] public List<IngredientData> otuputingredients = new List<IngredientData>();
+    [SerializeField] public List<IngredientData> outputIngredients = new List<IngredientData>();
 
     public static RecipeData CreateFromInfo(RecipeInfo info)
     {

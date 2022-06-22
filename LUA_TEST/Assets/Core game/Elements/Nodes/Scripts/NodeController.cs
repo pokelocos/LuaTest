@@ -30,6 +30,8 @@ public class NodeController : MonoBehaviour
     public NodeData Data => data;
     public int InputCount => inputs.Count();
     public int OutputCount => outputs.Count();
+    public void AddInput(ConnectionController c) => inputs.Add(c);
+    public void AddOutput(ConnectionController c) => outputs.Add(c);
 
 
     public RecipeData CurrentRecipe
@@ -53,7 +55,7 @@ public class NodeController : MonoBehaviour
 
     private void Start()
     {
-        this.InitEvents();
+        this. InitEvents();
          
         if(ResourcesLoader.allowModData)
             this.InitLuaEvents();
@@ -87,12 +89,42 @@ public class NodeController : MonoBehaviour
         nodeView.SetView(data);
     }
 
+    private void SendProducts()
+    {
+        for (int i = 0; i < outputs.Count; i++)
+        {
+            outputs[i].SendProduct();
+        }
+    }
+
+    public void Addingredient(ConnectionController c,IngredientData ing)
+    {
+        inventory.TryAddIngredient(c, ing);
+    }
+
     public void RemoveConnection(ConnectionController connection)
     {
         inputs.Remove(connection); // esto podria estar con un if els y ais sacar eventos UwU
         outputs.Remove(connection);
 
         OnDisconnect?.Invoke(connection,this);
+    }
+
+    public bool CannConnect(IngredientData newIngredient)
+    {
+        data.recipes.OrderByDescending(r => r.inputIngredients.Count());
+        var ings = inputs.Select(x => x.GetIngredientAllowed()).ToList();
+        ings.Add(newIngredient);
+
+        var recipes = data.recipes;
+        for (int i = 0; i < recipes.Count(); i++)
+        {
+            if(!ings.Except(recipes[i].inputIngredients).Any())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
@@ -103,6 +135,7 @@ public class NodeController : MonoBehaviour
     {
         // Node Events
         //timer.OnStart += (clock) => { };
+        timer.OnEnd += (clock) => { if (!clock.reverse) SendProducts();};
         timer.OnEnd += (clock) => { TryStartProduction(); };
         timer.OnUpdate += (clock) => { nodeView.SetBarAmount((clock.Current / currentRecipe.time)); };
 
@@ -188,7 +221,7 @@ public class NodeController : MonoBehaviour
         public event InventoryEvent OnSuccessReceived;
         public event InventoryEvent OnFailReceived;
 
-        protected void TryAddIngredient(ConnectionController from, IngredientData ingredient) // change name to "TryAddReport" (??)
+        public void TryAddIngredient(ConnectionController from, IngredientData ingredient) // change name to "TryAddReport" (??)
         {
             var reports = (from r in receivedIngredient 
                      where r.@from == @from 

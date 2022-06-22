@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 using RA;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "New node data",menuName = "MicroFactory/Node Data...")]
 public class NodeData : ScriptableObject // atributos publico (???)
@@ -30,14 +31,19 @@ public class NodeData : ScriptableObject // atributos publico (???)
         inst.iconColor = Commons.StrToColor(info.iconName);
         inst.timerColor = Commons.StrToColor(info.timerColor);
 
-        inst.inputMax = info.inputMax;
-        inst.outputMax = info.outputMax;
+        //inst.inputMax = info.inputMax;
+        //inst.outputMax = info.outputMax;
 
         for (int i = 0; i < info.recipes.Count; i++)
         {
             var recipe = ResourcesLoader.GetRecipe(info.recipes[i]);
             inst.recipes.Add(recipe);
         }
+
+        inst.inputMax = inst.recipes.Max(x => x.inputIngredients.Count);
+        Debug.Log(inst.inputMax);
+        inst.outputMax = inst.recipes.Max(x => x.outputIngredients.Count);
+        Debug.Log(inst.outputMax);
 
         inst.tags = info.tags;
 
@@ -54,8 +60,8 @@ public struct NodeInfo
     [XmlElement(ElementName = "BackgroundColor")] public string backgroundColor;
     [XmlElement(ElementName = "IconColor")] public string iconColor;
     [XmlElement(ElementName = "TimerColor")] public string timerColor;
-    [XmlElement(ElementName = "InputMax")] public int inputMax;
-    [XmlElement(ElementName = "OutputMax")] public int outputMax;
+    [XmlElement(ElementName = "InputMax")] public int inputMax; // quitar
+    [XmlElement(ElementName = "OutputMax")] public int outputMax; // quitar
 
     [XmlArray("Recipes")]
     [XmlArrayItem("Recipe")] public List<string> recipes;
