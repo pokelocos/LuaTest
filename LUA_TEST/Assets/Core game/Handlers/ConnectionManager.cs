@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnectionHandler : MonoBehaviour
+public class ConnectionManager : MonoBehaviour
 {
     [SerializeField] private ConnectionController connection_Pref;
 
@@ -11,8 +11,8 @@ public class ConnectionHandler : MonoBehaviour
     [SerializeField] private ConnectionData unmatchConnection;
 
     [Header("Scene References")]
-    [SerializeField] private ConnectionView connectionPreview;
-    //[SerializeField] private IngredientPreview ingredientPreview;
+    [SerializeField] private ConnectionPreview connectionPreview;
+    [SerializeField] private IngredientPreview ingredientPreview;
 
     private NodeController currentNode;
     private NodeController otherNode;
@@ -24,7 +24,7 @@ public class ConnectionHandler : MonoBehaviour
     private void Awake()
     {
         connectionPreview.gameObject.SetActive(false);
-        //ingredientPreview.gameObject.SetActive(false);
+        ingredientPreview.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,7 +50,6 @@ public class ConnectionHandler : MonoBehaviour
     private void StartDragConnection(Vector3 position)
     {
         Collider2D target = Physics2D.OverlapPoint(position);
-
         if (target == null)
             return;
 
@@ -61,8 +60,8 @@ public class ConnectionHandler : MonoBehaviour
         if (node.OutputCount < node.Data.outputMax)
         {
             connectionPreview.SetView(normalConnetion);
-            currentIngredient = node.CurrentRecipe.otuputingredients[node.OutputCount];
-            //IngredientPreview.SetView(ingredient);
+            currentIngredient = node.CurrentRecipe.outputIngredients[node.OutputCount];
+            ingredientPreview.SetView(currentIngredient);
         }
         else
         {
@@ -85,17 +84,26 @@ public class ConnectionHandler : MonoBehaviour
 
         Collider2D target = Physics2D.OverlapPoint(mousePosition);
         if (target == null)
+        {
+            connectionPreview.SetView(normalConnetion);
             return;
+        }
 
         var node = target.gameObject.GetComponent<NodeController>();
         if (node == null || node == currentNode)
+        {
+            connectionPreview.SetView(normalConnetion);
             return;
+        }
 
-        if(node.InputCount + 1 >= node.Data.inputMax)
+        if (node.InputCount + 1 >= node.Data.inputMax)
         {
             connectionPreview.SetView(errorConnetion);
         }
-        //else if(node.matchIngredient()) // pregunar si exite una recipe que contega el elemnto
+        else if(!node.CannConnect(currentIngredient))
+        {
+            connectionPreview.SetView(unmatchConnection);
+        }
         else 
         {
             connectionPreview.SetView(normalConnetion);
@@ -111,8 +119,8 @@ public class ConnectionHandler : MonoBehaviour
         if (otherNode.InputCount + 1 >= otherNode.Data.inputMax)
             return;
 
-        //if(node.matchIngredient()) // pregunar si exite una recipe que contega el elemnto
-        //return;
+        if(!otherNode.CannConnect(currentIngredient))
+            return;
 
         CreateConnection(currentNode,otherNode,currentIngredient);
     }
@@ -120,14 +128,17 @@ public class ConnectionHandler : MonoBehaviour
     private void ClearReferences()
     {
         connectionPreview.gameObject.SetActive(false);
+        ingredientPreview.gameObject.SetActive(false);
         currentNode = null;
         otherNode = null;
         currentIngredient = null;
     }
 
-    private void CreateConnection(NodeController from, NodeController to,IngredientData ingredient) // no se si esto deba estar aqui pero weno
+    private void CreateConnection(NodeController from, NodeController to,IngredientData ingredient)
     {
         var connection = Instantiate(connection_Pref, from.transform);
+        from.AddOutput(connection);
+        to.AddInput(connection);
         connection.Connect(from, to, ingredient);
         OnCreateConnection?.Invoke(connection);
     }
