@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <GameModeInfo>
-    <Name>asdsdsad</Name>
-    <Description>asdasdasdsdad</Description>
-    <Mode>asasd</Mode>
+	<Name>Game mode name</Name>
+	<Description>Game mode description</Description>
+	<StartMoney>1000</StartMoney>
+	<MaxContract>5</MaxContract>
+	<AllowBaseWinCondition>true</AllowBaseWinCondition>
+	<AllowBaseWinCondition>true</AllowBaseWinCondition>
+	<AllowBaseGame>true</AllowBaseGame>
+	<AllowMods>true</AllowMods>
 </GameModeInfo>
