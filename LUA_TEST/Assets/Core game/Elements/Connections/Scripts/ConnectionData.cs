@@ -5,7 +5,6 @@ using System.Xml.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New connection data", menuName = "MicroFactory/Connection Data...")]
-
 public class ConnectionData : ScriptableObject
 {
     public List<string> tags;
@@ -34,5 +33,5 @@ public struct ConnectionInfo
     [XmlElement(ElementName = "BorderColor")] public string borderColor;
     
     [XmlArray("Tags")]
-    [XmlArrayItem("tag")] public List<string> tags;
+    [XmlArrayItem("Tag")] public List<string> tags;
 }
