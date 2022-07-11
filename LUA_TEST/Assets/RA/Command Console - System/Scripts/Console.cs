@@ -11,7 +11,7 @@ namespace RA.CommandConsole
         [SerializeField] private RectTransform outputRoot;
         [SerializeField] private Text outputText;
 
-        private bool _showOutputText = false;
+        private bool _showOutputText = true;
 
         private bool IsActive => inputfield.gameObject.activeInHierarchy;
 
