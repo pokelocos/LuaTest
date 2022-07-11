@@ -64,7 +64,6 @@ public class ConnectionController : MonoBehaviour
         to.RemoveConnection(this);
 
         OnDisconnect?.Invoke(this, from, to);
-
         Destroy(this.gameObject);
     }
 
@@ -85,7 +84,8 @@ public class ConnectionController : MonoBehaviour
     /// <param name="size"></param>
     private void UpdateBoxCollider(Vector2 size)
     {
-        collider.size = size;
+        collider.size = new Vector2(size.x * 5, collider.size.y);
+        //collider.size = size * 5;
         collider.offset = new Vector2(size.x / 2, collider.offset.y);
     }
 
