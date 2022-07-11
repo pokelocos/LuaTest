@@ -9,33 +9,38 @@ namespace RA.Inputs
 {
     public static class InputUtils
     {
-        private static float DOUBLE_CLICK_TIME = 0.15f;
+        private static float DOUBLE_CLICK_TIME = 0.25f;
 
-        private static Dictionary<int, float> lastInputs = new Dictionary<int, float>();
+        //private static Dictionary<int, float> lastInputs = new Dictionary<int, float>();
+        private static Dictionary<object, Dictionary<int, float>> lastInputs = new Dictionary<object, Dictionary<int, float>>();
 
-        public static bool MouseDoubleCLick(int input)
+        public static bool MouseDoubleCLick(int input,object obj)
         {
             if (UnityEngine.Input.GetMouseButtonDown(input))
             {
-                if (!lastInputs.ContainsKey(input))
+                Dictionary<int, float> dic;
+                if (!lastInputs.ContainsKey(obj))
                 {
-                    lastInputs.Add(input,Time.unscaledTime);
+                    dic = new Dictionary<int, float>();
+                    lastInputs.Add(obj, dic);
+                }
+                else
+                {
+                    lastInputs.TryGetValue(obj, out dic);
+                }
+
+                if (!dic.ContainsKey(input))
+                {
+                    dic.Add(input,Time.unscaledTime);
                     return false;
                 }
 
                 float last;
-                lastInputs.TryGetValue(input,out last);
+                dic.TryGetValue(input,out last);
                 float delta = Time.unscaledTime - last;
 
-                if (delta <= DOUBLE_CLICK_TIME)
-                {
-                    return true;
-                }
-                else
-                {
-                    lastInputs[input] = Time.unscaledTime;
-                    return false;
-                }
+                lastInputs[obj][input] = Time.unscaledTime;
+                return delta <= DOUBLE_CLICK_TIME;
             }
             return false;
         }
