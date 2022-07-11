@@ -18,6 +18,10 @@ public class ConnectionController : MonoBehaviour
 
     private List<IngredientController> shippingIngredients = new List<IngredientController>();
 
+    private delegate void ConnexionEvent(ConnectionController cc, NodeController input, NodeController output);
+    private event ConnexionEvent OnConnect;
+    private event ConnexionEvent OnDisconnect;
+
     public NodeController GetInputNode() => from;
     public NodeController GetOutputNode() => to;
     public IngredientData GetIngredientAllowed() => ingredientAllowed;
@@ -50,12 +54,16 @@ public class ConnectionController : MonoBehaviour
         this.from = from;
         this.to = to;
         this.ingredientAllowed = ingredientAllowed;
+
+        OnConnect?.Invoke(this, from, to);
     }
 
     public void Disconnect()
     {
         from.RemoveConnection(this);
         to.RemoveConnection(this);
+
+        OnDisconnect?.Invoke(this, from, to);
 
         Destroy(this.gameObject);
     }
