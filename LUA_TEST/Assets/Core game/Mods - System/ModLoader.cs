@@ -14,12 +14,17 @@ public static class ModLoader // change name to data loader ??
 
     public static int ModsCount { get { return loadedMods.Count; } }
 
-    public static Sprite GetImage(string s)
+    /// <summary>
+    /// Returns the saved Image with the name given by parameters.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static Sprite GetImage(string name)
     {
         for (int i = 0; i < loadedMods.Count; i++)
         {
             Sprite sprite;
-            if(loadedMods[i].images.TryGetValue(s,out sprite))
+            if(loadedMods[i].images.TryGetValue(name,out sprite))
             {
                 return sprite;
             }
@@ -28,7 +33,7 @@ public static class ModLoader // change name to data loader ??
     }
 
     /// <summary>
-    /// R eturns the mod saved at index given by parameters.
+    /// Returns the mod saved at index given by parameters.
     /// </summary>
     /// <param name="i"></param>
     /// <returns></returns>
@@ -229,9 +234,9 @@ public static class ModLoader // change name to data loader ??
         public Dictionary<string, Sprite> images;
         public Dictionary<string, AudioClip> audios;
 
-        public List<string> luaCode; // esto no se si sea correcto, yo creo que no lo voy a llenar pero puede ser importante no se.
+        public List<string> luaCode; 
 
-        internal string DebugInfo() // quitar cuando los sonidos esten implementados
+        internal string DebugInfo() 
         {
             return "Ingredient: " + ingredientsInfo?.Count + "\n" +
                 "Recipes: " + recipesInfo?.Count +"\n" +

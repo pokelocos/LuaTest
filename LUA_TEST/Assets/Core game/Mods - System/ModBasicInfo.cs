@@ -20,8 +20,9 @@ public struct GameModeInfo
 {
     [XmlElement(ElementName = "Name")] public string name;
     [XmlElement(ElementName = "Description")] public string description;
-    //[XmlElement(ElementName = "Thumnail")] public Sprite thumnail;
-    [XmlElement(ElementName = "Mode")] public string mode; // "VANILLA", "ONLY_MODS", "BOTH"
+    [XmlElement(ElementName = "Thumnail")] public string thumnail;
+    [XmlElement(ElementName = "AllowBaseGame")] public string allowBaseGame;
+    [XmlElement(ElementName = "AllowMods")] public string allowMods;
 
     // no se si poner las reglas aqui o como funciones en lua
     // si las pongo aqui puedo crear un modo de juego que varie su dificultad cambiando parametros nomas
