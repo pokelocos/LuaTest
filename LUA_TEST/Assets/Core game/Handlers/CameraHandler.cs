@@ -12,6 +12,7 @@ public class CameraHandler : MonoBehaviour
     private NodeView draggingNode = null;
 
     [SerializeField] private Vector3 cameraStartPosition = new Vector3(0, 0, -10);
+
     [Header("Variables de velocidad")]
     [SerializeField] private float cameraMoveSpeed = 3f;
     [SerializeField] private float cameraZoomSpeed = 10f;
@@ -21,14 +22,13 @@ public class CameraHandler : MonoBehaviour
 
     [Header("Boundries")]
     [SerializeField] private Vector2 zoomBoundries = new Vector2(5, 20);
-    [SerializeField] private Rect movementBoundries;
-
+    [SerializeField] private Rect movementBoundries = new Rect(new Vector2(0, 0), new Vector2(50, 50));
     bool drag = false;
     bool lastDrag = false;
     bool hitNode = false;
     Vector3 difference;
     Vector3 origen;
-    // Start is called before the first frame update
+
     [Space, Header("Sounds")]
     public AudioSource source;
     public AudioClip startGrabSound;

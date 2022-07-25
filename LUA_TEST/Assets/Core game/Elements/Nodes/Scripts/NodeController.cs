@@ -83,12 +83,12 @@ public class NodeController : MonoBehaviour
         var leftInput = 0;
         var rightInput = 1;
 
-        if (InputUtils.MouseDoubleCLick(leftInput))
+        if (InputUtils.MouseDoubleCLick(leftInput,this))
         {
             Debug.Log("Double left");
         }
 
-        if (InputUtils.MouseDoubleCLick(rightInput))
+        if (InputUtils.MouseDoubleCLick(rightInput,this))
         {
             Debug.Log("Double Right");
         }
