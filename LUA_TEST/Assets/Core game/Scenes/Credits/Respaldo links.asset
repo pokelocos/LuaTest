@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a483d67f5ad724d8893c85ac5b1ae6, type: 3}
+  m_Name: Respaldo links
+  m_EditorClassIdentifier: 
+  lenguage: es
+  infoGroup:
+  - title: Desarrolladores
+    colummns: 1
+    names:
+    - "Nicol\xE1s Romero"
+    - Santiago Cervera
+    - Cristobal Venegas
+  - title: Control de calidad
+    colummns: 2
+    names:
+    - "Gabriel Sep\xFAlveda"
+    - Gerardo A. Mendoza
+    - Felipe Romero
+    - Tabita Salgado
+    - Fernando Castro
+    - Caludio Rubio
+    - Ignacio Reyes
+  - title: Arte e Iconografia
+    colummns: 2
+    names:
+    - smashicons
+    - https://www.flaticon.com/authors/smashicons
+    - juicy-fish
+    - https://www.flaticon.com/authors/juicy-fish
+    - 
+    - https://www.flaticon.com/authors/amethyst-prime
+    - 
+    - https://www.flaticon.com/authors/vector-stall
+    - 
+    - https://www.freepik.com
+    - 
+    - https://www.flaticon.com/authors/stockio
+    - 
+    - https://www.flaticon.com/authors/webalys
+    - 
+    - https://www.flaticon.com/authors/creativecons
+    - 
+    - https://www.flaticon.com/authors/vitaly-gorbachev
+    - 
+    - https://www.flaticon.com/authors/pixelmeetup
+    - 
+    - https://www.flaticon.com/authors/bartama-graphic
+    - 
+    - https://www.flaticon.com/authors/catkuro
+    - 
+    - https://www.flaticon.com/authors/photo3idea-studio
+    - 
+    - https://www.flaticon.com/authors/pojok-d
+    - 
+    - https://www.flaticon.com/authors/andy-horvath
+    - 
+    - https://www.flaticon.com/authors/monkik
+    - 
+    - https://www.flaticon.com/authors/pongsakornred
+    - 
+    - https://www.flaticon.com/authors/pixel-perfect
+    - 
+    - https://www.flaticon.com/authors/muhammad-tajudin
+    - 
+    - https://www.flaticon.com/authors/ilham-fitrotul-hayat
+    - 
+    - https://www.flaticon.com/authors/surang
+    - 
+    - https://www.flaticon.com/authors/muhazdinata
+    - 
+    - https://www.flaticon.com/authors/dimitry-miroliubov
+  - title: 
+    colummns: 0
+    names: []
+  - title: 
+    colummns: 0
+    names: []
