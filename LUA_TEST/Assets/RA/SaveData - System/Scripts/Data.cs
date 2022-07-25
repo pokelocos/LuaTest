@@ -17,12 +17,12 @@ namespace DataSystem
         // <----
         // Fill, This area whit varibles and object you want to save.
 
-        /* //DESCOMENTAR
-        public GeneralStatistics stats = new GeneralStatistics();
-        public GameState GameState;
-        public OptionData options = new OptionData();
-        public WorkShopTraker WS_Traker = new WorkShopTraker(); 
-        */
+        //DESCOMENTAR
+        // public GeneralStatistics stats = new GeneralStatistics();
+        // public GameState GameState;
+        public SettingsData options = new SettingsData();
+        // public WorkShopTraker WS_Traker = new WorkShopTraker(); 
+        
 
         // <----
 
