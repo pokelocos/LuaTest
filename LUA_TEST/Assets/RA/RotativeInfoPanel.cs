@@ -4,44 +4,38 @@ using UnityEngine;
 
 namespace RA
 {
-    public class RotativeInfoPanel : MonoBehaviour // esto no deberia ser credit scene sino que deberia ser un componente que
+    /// <summary>
+    /// esta clase requiere que los pivotes tanto de el "infoPanel" como la "mask"
+    /// </summary>
+    public class RotativeInfoPanel : MonoBehaviour
     {
-        [SerializeField] private Vector2 start, end;
         [SerializeField] private float speed;
-        [SerializeField] private Transform infoPanel;
+        [SerializeField] private RectTransform infoPanel;
+        [SerializeField] private RectTransform mask;
 
-        private Rect infoRect;
-        private Rect pivotRect;
+        private float end;
 
         void Start()
         {
-            infoRect = infoPanel.GetComponent<RectTransform>().rect;
-            pivotRect = GetComponent<RectTransform>().rect;
+            infoPanel.pivot = new Vector2(.5f, 1);
+            infoPanel.anchorMin = new Vector2(.5f, 0);
+            infoPanel.anchorMax = new Vector2(.5f, 0);
+            mask.pivot = new Vector2(.5f, 1);
+
+            end = -infoPanel.rect.y + -mask.rect.y;
         }
 
         void Update()
         {
-            infoPanel.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
+            infoPanel.anchoredPosition += new Vector2(0, speed * Time.deltaTime);
 
-            if (infoRect.yMin > (start + pivotRect.position).y)
+            var y = infoPanel.anchoredPosition.y;
+            if (end <= y)
             {
-                infoPanel.transform.position = end + pivotRect.position;
+                Debug.Log(end +"<="+ y);
+                infoPanel.anchoredPosition = new Vector2(0, 0);
             }
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.green;
-            var s = start + pivotRect.position;
-            Gizmos.DrawLine(s + new Vector2(300, 0), s + new Vector2(-300, 0));
-            Gizmos.DrawSphere(s + new Vector2(300, 0), 5f);
-            Gizmos.DrawSphere(s + new Vector2(-300, 0), 5f);
-
-            Gizmos.color = Color.red;
-            var e = end + pivotRect.position;
-            Gizmos.DrawLine(e + new Vector2(300, 0), e + new Vector2(-300, 0));
-            Gizmos.DrawSphere(e + new Vector2(300, 0), 5f);
-            Gizmos.DrawSphere(e + new Vector2(-300, 0), 5f);
-        }
     }
 }
