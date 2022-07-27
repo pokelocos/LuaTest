@@ -13,7 +13,7 @@ public class MainMenu_Scene : MonoBehaviour
 
     private void Awake()
     {
-        areYouSurePanel.SetActive(false);
+        //areYouSurePanel.SetActive(false);
 
         var data = StaticData.Data;
 

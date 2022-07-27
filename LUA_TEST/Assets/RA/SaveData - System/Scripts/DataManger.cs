@@ -112,6 +112,7 @@ namespace DataSystem
                 FileStream stream = new FileStream(path, FileMode.Create);
                 formatter.Serialize(stream, data);
                 stream.Close();
+                Debug.Log("[Save system]: data saved on '" + path + "'.");
                 return data;
             }
             else

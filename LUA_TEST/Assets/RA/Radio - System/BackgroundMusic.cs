@@ -8,9 +8,12 @@ public class BackgroundMusic : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(Radio.mainRadio);
+        Debug.Log(Radio.mainRadio.GetSource(0));
         var source = Radio.mainRadio.GetSource(0);
         source.loop = true;
-        source.PlayOneShot(music[Random.Range(0,music.Count)]);
+        source.clip = music[Random.Range(0, music.Count)];
+        source.Play();
     }
 
     // Update is called once per frame

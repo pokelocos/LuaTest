@@ -16,14 +16,10 @@ namespace DataSystem
     {
         // <----
         // Fill, This area whit varibles and object you want to save.
-
         //DESCOMENTAR
-        // public GeneralStatistics stats = new GeneralStatistics();
-        // public GameState GameState;
+        public StatisticsData stats = new StatisticsData();
+        public GameState gameState = null;
         public SettingsData options = new SettingsData();
-        // public WorkShopTraker WS_Traker = new WorkShopTraker(); 
-        
-
         // <----
 
         /// <summary>
@@ -33,10 +29,8 @@ namespace DataSystem
 
         public bool IsGameInProgress()
         {
-            return false;//GameState != null; //DESCOMENTAR
+            return gameState != null;
         }
-
-
     }
 
 
