@@ -14,6 +14,45 @@ namespace RA.CommandConsole
 
         internal static List<object> commandList = new List<object>();
         private static bool _metaLog = false;
+
+        public static void start()
+        {
+            var spawnNode = new DebugCommand<string>("SpawnNode", "", "spawn_node", (x) => { 
+                Debug.Log("a"); 
+            });
+           
+            var removeNode = new DebugCommand<string>("RemoveNode", "", "remove_node", (x) => {
+                Debug.Log("a");
+            });
+            
+            var spawnEffect = new DebugCommand<string>("SpawnEffect", "", "spawn_effect", (x) => {
+                Debug.Log("a");
+            });
+           
+            var removeEffect = new DebugCommand<string>("RemoveEffect", "", "remove_effect", (x) => {
+                Debug.Log("a");
+            });
+           
+            var addMoney = new DebugCommand<string>("AddMoney", "", "add_money", (x) => {
+                Debug.Log("a");
+            });
+           
+            var setCycle = new DebugCommand<string>("SetCycle", "", "set_cycle", (x) => {
+                Debug.Log("a");
+            });
+          
+            var destroyAll = new DebugCommand<string>("DestroyAll", "", "destroy_all", (x) => {
+                Debug.Log("a");
+            });
+           
+            var getReward = new DebugCommand<string>("GetReward", "", "get_reward", (x) => {
+                Debug.Log("a");
+            });
+            
+            var help = new DebugCommand<string>("Help", "", "help", (x) => {
+                Debug.Log("a");
+            });
+        }
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static List<object> CollectMetohdsFromScripts() 
