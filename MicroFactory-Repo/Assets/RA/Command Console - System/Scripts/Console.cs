@@ -31,7 +31,7 @@ namespace RA.CommandConsole
         // Start is called before the first frame update
         void Start()
         {
-
+            inputfield.onEndEdit.AddListener((s) => OnRetun());
         }
 
         // Update is called once per frame
@@ -54,6 +54,7 @@ namespace RA.CommandConsole
 
         public void OnRetun()
         {
+            Debug.Log("'"+ inputfield.text + "'");
             var x = Commands.HandleInput(inputfield.text);
             if (x)
                 Commands.Log("The  <b>" + inputfield.text + "</b> command was executed successfully.");

@@ -12,49 +12,35 @@ namespace RA.CommandConsole
     {
         public static Console main;
 
-        internal static List<object> commandList = new List<object>();
+        public static List<object> commandList = new List<object>();
         private static bool _metaLog = false;
 
-        public static void start()
+        public static void LoadCommnadsFK()
         {
-            var spawnNode = new DebugCommand<string>("SpawnNode", "", "spawn_node", (x) => { 
-                Debug.Log("a"); 
-            });
-           
-            var removeNode = new DebugCommand<string>("RemoveNode", "", "remove_node", (x) => {
-                Debug.Log("a");
-            });
-            
-            var spawnEffect = new DebugCommand<string>("SpawnEffect", "", "spawn_effect", (x) => {
-                Debug.Log("a");
-            });
-           
-            var removeEffect = new DebugCommand<string>("RemoveEffect", "", "remove_effect", (x) => {
-                Debug.Log("a");
-            });
-           
+
             var addMoney = new DebugCommand<string>("AddMoney", "", "add_money", (x) => {
                 Debug.Log("a");
             });
-           
+            commandList.Add(addMoney);
+
             var setCycle = new DebugCommand<string>("SetCycle", "", "set_cycle", (x) => {
                 Debug.Log("a");
             });
-          
+            commandList.Add(setCycle);
+
             var destroyAll = new DebugCommand<string>("DestroyAll", "", "destroy_all", (x) => {
                 Debug.Log("a");
             });
-           
+            commandList.Add(destroyAll);
+
             var getReward = new DebugCommand<string>("GetReward", "", "get_reward", (x) => {
                 Debug.Log("a");
             });
-            
-            var help = new DebugCommand<string>("Help", "", "help", (x) => {
-                Debug.Log("a");
-            });
+            commandList.Add(getReward);
+
         }
         
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static List<object> CollectMetohdsFromScripts() 
         {
             List<object> commands = new List<object>();
@@ -72,6 +58,7 @@ namespace RA.CommandConsole
                 commands.Add(new DebugCommand(attribute.Id, attribute.Description, attribute.Format, action));
             }
             commandList = commands;
+            LoadCommnadsFK();
             return commands;
         }
 
@@ -114,11 +101,9 @@ namespace RA.CommandConsole
         }
     }
 
-    
-
     public static class CommandUtils
     {
-        [Command("help", "show a list of commands.", "help")]
+        [Command("Help", "show a list of commands.", "help")]
         public static void Help()
         {
             var commands = Commands.commandList;
