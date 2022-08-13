@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,5 +15,10 @@ public class EffectControler : MonoBehaviour
     void Update()
     {
         
+    }
+
+    internal void Init(EffectData data, int v)
+    {
+        throw new NotImplementedException();
     }
 }

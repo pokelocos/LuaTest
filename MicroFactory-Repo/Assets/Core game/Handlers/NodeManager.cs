@@ -9,20 +9,43 @@ public class NodeManager : MonoBehaviour
     [SerializeField] private NodeController node_Pref;
 
     private List<NodeController> nodes = new List<NodeController>();
-    
-    public void CreateNodeByName(string name)
+
+    public void CreateNodeByIndex(int i)
     {
-        var randIndex = Random.Range(0, ResourcesLoader.NodeAmount());
-        var data = ResourcesLoader.GetNode(randIndex);
+        var data = ResourcesLoader.GetNode(i);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, 0);
-        nodes.Add(node);
+    }
+
+    public void CreateNodeByName(string name)
+    {
+        var data = ResourcesLoader.GetNode(name);
+        var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
+        node.Init(data, 0);
+    }
+
+    public void CreateNodeByTag(string s)
+    {
+        var nodes = ResourcesLoader.GetNodesByTag(s);
+        var node = nodes[Random.Range(0, nodes.Length)];
+        CreateNodeByName(node.name);
+    }
+
+    public void CreateNodeRandom()
+    {
+        var randIndex = Random.Range(0, ResourcesLoader.NodeAmount());
+        CreateNodeByIndex(randIndex);
     }
 
     public void RemoveNodeByName(string name)
     {
         var node = nodes.Find(n => n.name.Equals(name));
         nodes.Remove(node);
+    }
+
+    public void RemoveNodeByindex(int n)
+    {
+        nodes.RemoveAt(n);
     }
 
     private void Awake()
