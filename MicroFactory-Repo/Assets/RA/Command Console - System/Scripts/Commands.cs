@@ -15,30 +15,6 @@ namespace RA.CommandConsole
         public static List<object> commandList = new List<object>();
         private static bool _metaLog = false;
 
-        public static void LoadCommnadsFK()
-        {
-
-            var addMoney = new DebugCommand<string>("AddMoney", "", "add_money", (x) => {
-                Debug.Log("a");
-            });
-            commandList.Add(addMoney);
-
-            var setCycle = new DebugCommand<string>("SetCycle", "", "set_cycle", (x) => {
-                Debug.Log("a");
-            });
-            commandList.Add(setCycle);
-
-            var destroyAll = new DebugCommand<string>("DestroyAll", "", "destroy_all", (x) => {
-                Debug.Log("a");
-            });
-            commandList.Add(destroyAll);
-
-            var getReward = new DebugCommand<string>("GetReward", "", "get_reward", (x) => {
-                Debug.Log("a");
-            });
-            commandList.Add(getReward);
-
-        }
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static List<object> CollectMetohdsFromScripts() 
@@ -58,7 +34,6 @@ namespace RA.CommandConsole
                 commands.Add(new DebugCommand(attribute.Id, attribute.Description, attribute.Format, action));
             }
             commandList = commands;
-            LoadCommnadsFK();
             return commands;
         }
 
@@ -103,7 +78,7 @@ namespace RA.CommandConsole
 
     public static class CommandUtils
     {
-        [Command("Help", "show a list of commands.", "help")]
+        [Command("Help", "Show a list of commands.", "help")]
         public static void Help()
         {
             var commands = Commands.commandList;
@@ -116,6 +91,14 @@ namespace RA.CommandConsole
                 Commands.Log(label);
             }
         }
+
+        [Command("Clear","Clear console.","Clear console")]
+        public static void ClearConsole() // esto podria ir en la clase "Console" (?)
+        {
+            Commands.main.Clear();
+        }
+
+        
     }
 
 }

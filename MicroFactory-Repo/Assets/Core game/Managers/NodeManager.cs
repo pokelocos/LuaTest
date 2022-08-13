@@ -24,6 +24,11 @@ public class NodeManager : MonoBehaviour
         node.Init(data, 0);
     }
 
+    internal void RemoveAll()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void CreateNodeByTag(string s)
     {
         var nodes = ResourcesLoader.GetNodesByTag(s);

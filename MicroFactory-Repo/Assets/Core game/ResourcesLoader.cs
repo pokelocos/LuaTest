@@ -1,3 +1,4 @@
+using RA.CommandConsole;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ public static class ResourcesLoader
     /// </summary>
     public static void LoadDataGame() // llamar al inciar la escena de juego!!!
     {
-        if(allowBaseData)
+        //if(allowBaseData)
         {
             LoadBaseGameData();
         }
@@ -138,4 +139,27 @@ public static class ResourcesLoader
         }
     }
 
+
+    [Command("Help nodeNames", "show a list of loaded nodes.", "Help node names")]
+    public static void GetNodesNames()  // esto podria ir en la clase "ResourceLoader" (?)
+    {
+        Debug.Log(nodeDatas.Count);
+        foreach (var node in nodeDatas)
+        {
+            var n = node.name;
+            Commands.Log(n);
+        }
+    }
+
+    [Command("Help effectNames", "show a list of loaded effects.", "Help effect names")]
+    public static void GetEffectNames()  // esto podria ir en la clase "ResourceLoader" (?)
+    {
+        effectDatas.ForEach(n => Commands.Log(n.name));
+    }
+
+    [Command("Help ingredientNames", "show a list of loaded ingredients.", "Help ingredient names")]
+    public static void GetIngredientNames()  // esto podria ir en la clase "ResourceLoader" (?)
+    {
+        ingredientDatas.ForEach(n => Commands.Log(n.name));
+    }
 }

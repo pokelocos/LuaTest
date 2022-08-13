@@ -63,6 +63,11 @@ namespace RA.CommandConsole
             inputfield.text = "";
         }
 
+        public void Clear()// << esta funcion se puede mejroar para que maneje objetos texto en vez de solo un string
+        {
+            outputText.text = "";
+        }
+
         internal void Log(string log) // << esta funcion se puede mejroar para que maneje objetos texto en vez de solo un string
         {
             outputText.text += "\n" + log;
