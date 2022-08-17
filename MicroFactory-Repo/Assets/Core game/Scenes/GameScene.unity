@@ -4273,6 +4273,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54955846c98ef984988545a83d520ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeManager: {fileID: 0}
+  effectmanager: {fileID: 0}
+  gameModeManager: {fileID: 0}
+  rewardManager: {fileID: 0}
+  connectionManager: {fileID: 0}
+  particleManager: {fileID: 0}
+  timeHandler: {fileID: 0}
+  cameraHandler: {fileID: 0}
+  dragHandler: {fileID: 0}
 --- !u!114 &2108056263
 MonoBehaviour:
   m_ObjectHideFlags: 0
