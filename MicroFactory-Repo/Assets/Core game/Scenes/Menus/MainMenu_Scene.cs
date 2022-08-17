@@ -23,6 +23,11 @@ public class MainMenu_Scene : MonoBehaviour
         }
     }
 
+    public void Continue()
+    {
+        SceneManager.LoadScene("Game Scene");
+    }
+
     public void TryPlayButton()
     {
         var data = StaticData.Data;
