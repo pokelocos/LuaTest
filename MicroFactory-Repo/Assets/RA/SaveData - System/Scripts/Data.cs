@@ -20,12 +20,13 @@ namespace DataSystem
         public StatisticsData stats = new StatisticsData();
         public GameState gameState = null;
         public SettingsData options = new SettingsData();
+        public ModsAllowedData modsAllowed = new ModsAllowedData();
         // <----
 
         /// <summary>
         /// Basic constructor, necesary to make a data file.
         /// </summary>
-        public Data(){ }
+        public Data() { }
 
         public bool IsGameInProgress()
         {

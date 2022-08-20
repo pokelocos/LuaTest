@@ -137,6 +137,7 @@ public static class ModLoader // change name to data loader ??
         // load Images
         Dictionary<string, Sprite> imgs = LoadRecursiveImgs(modRoot, new Dictionary<string, Sprite> ());
         mod.images = imgs;
+        mod.basicInfo.thumnail = imgs["thumnail.png"]; // <-- ojo , no se como mejorar esto, osea no deberia estar aqui pero no se no donde ni como ponerlo
 
         // load sounds
         // XXXXX IMPLEMENTAR XXXXX

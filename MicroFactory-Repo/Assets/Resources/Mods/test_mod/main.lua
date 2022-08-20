@@ -7,6 +7,7 @@ return OnStartGame
 
 
 
+--[[
 local OnConnect = function ()
     MF.AddMoney(-50);
     MF.SpanwParticle("substract_money",50)
@@ -41,3 +42,4 @@ local OnChangeTimeSpeed = function ()
 end
 
 return OnChangeTimeSpeed
+--]]

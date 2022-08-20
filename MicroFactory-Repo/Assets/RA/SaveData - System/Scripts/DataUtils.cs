@@ -13,15 +13,15 @@ namespace DataSystem
         [RuntimeInitializeOnLoadMethod]
         public static void LoadDataOnStartGame()
         {
-            var d = DataManager.LoadData<Data>();
+            var data = DataManager.LoadData<Data>();
 
             // aqui podria ir lo de la sincronizacion con "SteamCloud"
 
-            if (d == null)
+            if (data == null)
             {
                 Debug.Log("there is no 'data' on this pc previously, creating new 'data'");
                 DataManager.NewData<Data>("");
-                SceneManager.LoadScene("Animation");
+                //SceneManager.LoadScene("Animation"); // <-- Implementar
             }
         }
 
