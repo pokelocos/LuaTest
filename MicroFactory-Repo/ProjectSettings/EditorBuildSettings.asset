@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Core game/Scenes/Menus/Options Scene.unity
     guid: 97d30be4ff295424ead77dd0fdd9d28e
   - enabled: 1
-    path: Assets/Core game/Scenes/Menus/Stadistics Scene.unity
+    path: Assets/Core game/Scenes/Stadistics/Stadistics Scene.unity
     guid: ed3b08298f54ef14099de891ec7b3da8
   - enabled: 1
-    path: Assets/Core game/Scenes/Menus/Select Mode Scene.unity
+    path: Assets/Core game/Scenes/SelectMode/Select Mode Scene.unity
     guid: 7fa4e0e85730daf4ea8d11485ef33141
   - enabled: 1
     path: Assets/Core game/Scenes/Workshop/Workshop Scene.unity

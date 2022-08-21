@@ -18,6 +18,7 @@ namespace DataSystem
         // Fill, This area whit varibles and object you want to save.
         //DESCOMENTAR
         public StatisticsData stats = new StatisticsData();
+        public GameState LastGame = null;
         public GameState gameState = null;
         public SettingsData options = new SettingsData();
         public ModsAllowedData modsAllowed = new ModsAllowedData();

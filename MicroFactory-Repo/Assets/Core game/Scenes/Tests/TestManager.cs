@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [MoonSharpUserData]
-public class GameManagerModTest : MonoBehaviour
+public class TestManager : MonoBehaviour
 {
     public Text show;
 
