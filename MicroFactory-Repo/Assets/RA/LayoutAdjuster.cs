@@ -17,6 +17,13 @@ public class LayoutAdjuster : MonoBehaviour
             CalculateAdjust();
     }
 
+    [ContextMenu("Adjust",false,0)]
+    private void CalculateFromEditor()
+    {
+        rect = GetComponent<RectTransform>();
+        CalculateAdjust();
+    }
+
     public void CalculateAdjust()
     {
         var h = 0f;
@@ -29,7 +36,8 @@ public class LayoutAdjuster : MonoBehaviour
                 adjust.CalculateAdjust();
 
             var rect = child.GetComponent<RectTransform>();
-            h += rect.sizeDelta.y;
+            if(rect.gameObject.activeInHierarchy)
+                h += rect.sizeDelta.y;
         }
         var size = (h + spacing);
         rect.sizeDelta = new Vector2(rect.sizeDelta.x, size);

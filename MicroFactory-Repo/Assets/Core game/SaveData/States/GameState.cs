@@ -6,14 +6,14 @@ using UnityEngine;
 [Serializable]
 public class GameState
 {
-    [SerializeField] private BasicStats basicStats;
+    [SerializeField] public BasicStats basicStats;
     //[SerializeField] private ExtraStats extraStats;
-    [SerializeField] private EffectState[] effects;
-    [SerializeField] private NodeState[] nodes;
-    [SerializeField] private ConnectionState[] connections;
-    [SerializeField] private string[] mods;
+    [SerializeField] public EffectState[] effects;
+    [SerializeField] public NodeState[] nodes;
+    [SerializeField] public ConnectionState[] connections;
+    [SerializeField] public string[] mods;
 
-    internal GameState(BasicStats basicStats, EffectState[] effects, NodeState[] nodes, ConnectionState[] connections, string[] mods)
+    public GameState(BasicStats basicStats, EffectState[] effects, NodeState[] nodes, ConnectionState[] connections, string[] mods)
     {
         this.basicStats = basicStats;
         this.effects = effects;
@@ -32,7 +32,7 @@ public class GameState
     }
 
     [Serializable]
-    internal struct BasicStats
+    public struct BasicStats
     {
         public int money;
         public int cycle;
@@ -51,7 +51,7 @@ public class GameState
     }
 
     [Serializable]
-    internal struct ExtraStats
+    public struct ExtraStats
     {
         public List<Tuple<string, float>> floatStats;
         public List<Tuple<string, string>> stringStats;
@@ -64,7 +64,7 @@ public class GameState
     }
 
     [Serializable]
-    internal struct NodeState
+    public struct NodeState
     {
         public string name;
         [SerializeField] public Tuple<float, float> position;
@@ -87,7 +87,7 @@ public class GameState
     }
 
     [Serializable]
-    internal struct EffectState
+    public struct EffectState
     {
         public string name;
         public float currentTime;
@@ -100,7 +100,7 @@ public class GameState
     }
 
     [Serializable]
-    internal struct ConnectionState
+    public struct ConnectionState
     {
         public Tuple<int, int> nodeRelationIndex;
         public string ingredientName;
