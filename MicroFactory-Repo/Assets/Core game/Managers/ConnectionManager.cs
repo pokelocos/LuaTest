@@ -26,6 +26,11 @@ public class ConnectionManager : MonoBehaviour
 
     public int TotalConnectionAmount => connections.Count();
 
+    internal void RemoveAll()
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void Awake()
     {
         connectionPreview.gameObject.SetActive(false);

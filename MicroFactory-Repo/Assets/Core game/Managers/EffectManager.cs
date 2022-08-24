@@ -38,6 +38,11 @@ public class EffectManager : MonoBehaviour
         //CreateEffectByName(effect.name);
     }
 
+    internal void RemoveAll()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void CreateEffectRandom()
     {
         var randIndex = Random.Range(0, ResourcesLoader.EffectAmount());

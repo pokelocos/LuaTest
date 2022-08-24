@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class GameModeManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int deltaReward;
+
+    public bool WinCondition()
     {
-        
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool LoseCondition()
     {
-        
+        return false;
+    }
+
+    public bool LoseWarning()
+    {
+        return false;
     }
 }

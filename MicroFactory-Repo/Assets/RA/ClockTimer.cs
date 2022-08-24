@@ -8,6 +8,7 @@ namespace RA.UtilMonobehaviours
     [MoonSharpUserData] 
     public class ClockTimer : MonoBehaviour
     {
+        public bool affectedByGlobalTime = true;
         public bool activeOnLoad;
         public bool reverse;
         public bool loop;
@@ -27,6 +28,14 @@ namespace RA.UtilMonobehaviours
         public float Max { get { return max; } set { max = value; } }
         public float Multiplier { get { return multiplier; } set { multiplier = value; } }
         public bool IsActive() => _active;
+
+
+        public void ClearEvent()
+        {
+            OnStart = null;
+            OnEnd = null;
+            OnUpdate = null;
+        }
 
         /// <summary>
         /// Start clock operation.
@@ -58,8 +67,8 @@ namespace RA.UtilMonobehaviours
         {
             if (_active)
             {
-                if(!reverse)
-                    _Update(0,max,1);
+                if (!reverse)
+                    _Update(0, max, 1);
                 else
                     _Update(max, 0, -1);
             }
@@ -76,7 +85,8 @@ namespace RA.UtilMonobehaviours
             if (current == start)
                 OnStart?.Invoke(this);
 
-            current += Time.deltaTime * multiplier * m;
+            var dt = ((affectedByGlobalTime) ? Time.deltaTime : Time.unscaledDeltaTime);
+            current += dt * multiplier * m;
             if ((m *current) >= (m *end))
             {
                 if (!loop)

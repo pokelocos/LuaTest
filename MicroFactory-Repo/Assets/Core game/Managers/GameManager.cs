@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Managers")]
     public NodeManager nodeManager;
     public EffectManager effectmanager;
     public GameModeManager gameModeManager;
@@ -12,14 +13,19 @@ public class GameManager : MonoBehaviour
     public ConnectionManager connectionManager;
     public ParticleManager particleManager;
 
+
+    [Header("Handlers")]
     public TimeHandler timeHandler;
     public CameraHandler cameraHandler;
     public DragHandler dragHandler;
+
 
     // Start is called before the first frame update
     void Start()
     {
         LoadCommnads();
+
+        timeHandler.OnEndCycle += () => OnEndCycle();
     }
 
     // Update is called once per frame
@@ -28,8 +34,23 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void DestroyAll()
+    private void OnEndCycle()
     {
+        var gm = gameModeManager;
+        if(gm.WinCondition())
+        {
+
+        }
+
+        if(gm.LoseWarning())
+        {
+
+        }
+
+        if(gm.LoseCondition())
+        {
+
+        }
 
     }
 
@@ -37,10 +58,10 @@ public class GameManager : MonoBehaviour
     public void LoadCommnads()
     {
         var destroyAll = new DebugCommand("DestroyAll", "Remove all items in play.", "destroy all", () => {
-            //connectionManager.RemoveAll();
+            connectionManager.RemoveAll();
             nodeManager.RemoveAll();
-            //effectmanager.RemoveAll();
-            //particleManager.RemoveAll();
+            effectmanager.RemoveAll();
+            particleManager.RemoveAll();
         });
         Commands.commandList.Add(destroyAll);
 
