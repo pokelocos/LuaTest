@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Core game/Scenes/Menus/Lab Scene.unity
     guid: 3730645e87c124d428262a2460c7bcf3
   - enabled: 1
-    path: Assets/Core game/Scenes/Menus/Options Scene.unity
+    path: Assets/Core game/Scenes/Options/Options Scene.unity
     guid: 97d30be4ff295424ead77dd0fdd9d28e
   - enabled: 1
     path: Assets/Core game/Scenes/Stadistics/Stadistics Scene.unity

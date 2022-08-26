@@ -30,11 +30,7 @@ public class TimeHandler : MonoBehaviour
         SetTimeScale(0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void SetTimeScale(float value)
     {

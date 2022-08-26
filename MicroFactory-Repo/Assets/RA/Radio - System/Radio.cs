@@ -1,3 +1,4 @@
+using DataSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,13 @@ public class Radio : MonoBehaviour
             var source = this.gameObject.AddComponent<AudioSource>();
             _channels.Add(new Channel(channel, source));
         }
+    }
+
+    private void Start()
+    {
+        var data = DataManager.LoadData<Data>();
+        GetSource(0).volume = data.options.musicVolumen * data.options.generalVolumen;
+        GetSource(1).volume = data.options.effectVolumen * data.options.generalVolumen;
     }
 
     public AudioSource GetSource(int channelID)

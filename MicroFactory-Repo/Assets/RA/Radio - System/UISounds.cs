@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class UISounds : MonoBehaviour
 {
-    [SerializeField] private List<AudioClip> clickSounds = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> sounds = new List<AudioClip>();
 
-    public void PlayRandomClickSound()
+    public void PlayRandomSound()
     {
         var source = Radio.mainRadio.GetSource("SFX");
-        source.PlayOneShot(clickSounds[Random.Range(0,clickSounds.Count)]);
+        source.PlayOneShot(sounds[Random.Range(0,sounds.Count)]);
+    }
+
+    public void PlaySoundByIndex(int n)
+    {
+        var source = Radio.mainRadio.GetSource("SFX");
+        source.PlayOneShot(sounds[n]);
     }
 }
