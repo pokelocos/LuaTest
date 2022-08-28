@@ -1,3 +1,4 @@
+using RA.UtilMonobehaviours;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,19 +23,24 @@ public class ConnectionManager : MonoBehaviour
     private List<ConnectionController> connections = new List<ConnectionController>();
 
     public delegate void ConnectionEvent(ConnectionController c);
+
+
+
     public ConnectionEvent OnCreateConnection;
 
     public int TotalConnectionAmount => connections.Count();
+    public List<ConnectionController> GetConnections => new List<ConnectionController>(connections);
 
     internal void RemoveAll()
     {
-        throw new System.NotImplementedException();
+        connections.ForEach(c => Destroy(c.gameObject));
+        connections = new List<ConnectionController>();
     }
 
     private void Awake()
     {
-        connectionPreview.gameObject.SetActive(false);
-        ingredientPreview.gameObject.SetActive(false);
+        connectionPreview.gameObject.SetActive(false); // (!)
+        ingredientPreview.gameObject.SetActive(false); // (!)
     }
 
     // Update is called once per frame
@@ -148,7 +154,7 @@ public class ConnectionManager : MonoBehaviour
         currentIngredient = null;
     }
 
-    private void CreateConnection(NodeController from, NodeController to,IngredientData ingredient)
+    public ConnectionController CreateConnection(NodeController from, NodeController to,IngredientData ingredient)
     {
         var connection = Instantiate(connection_Pref, from.transform);
         connections.Add(connection);
@@ -156,8 +162,10 @@ public class ConnectionManager : MonoBehaviour
 
         from.AddOutput(connection);
         to.AddInput(connection);
-        
+
+        connections.Add(connection);
         OnCreateConnection?.Invoke(connection);
+        return connection;
     }
 
 }

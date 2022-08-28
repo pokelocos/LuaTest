@@ -1,3 +1,4 @@
+using MicroFactory;
 using RA.CommandConsole;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,15 +6,17 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    [SerializeField] private EffectControler effect_Pref;
+    [SerializeField] private EffectController effect_Pref;
 
-    private List<EffectControler> effects = new List<EffectControler>();
+    private List<EffectController> effects = new List<EffectController>();
 
     // Start is called before the first frame update
     void Start()
     {
         LoadCommnads();
     }
+
+    public List<EffectController> GetEffects() => new List<EffectController>(effects);
 
     public void CreateEffectByIndex(int i)
     {
@@ -40,7 +43,8 @@ public class EffectManager : MonoBehaviour
 
     internal void RemoveAll()
     {
-        throw new System.NotImplementedException();
+        effects.ForEach(e => Destroy(e.gameObject));
+        effects = new List<EffectController>();
     }
 
     public void CreateEffectRandom()

@@ -20,9 +20,9 @@ public class XmlSaveSystem : MonoBehaviour
                 return imported;
             }
         }
-        catch (Exception e)
+        catch
         {
-            Debug.LogWarning("[Exception importing] \n ("+path+") xml file is not '"+typeof(T)+"'"); 
+            Debug.LogWarning("[Exception importing] \n (" + path + ") xml file is not '" + typeof(T) + "'");
             return default;
         }
     }

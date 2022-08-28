@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     {
         var data = DataManager.LoadData<Data>();
         state = data.gameState;
+       
+        // ver que hacer con los mods de state.Mods (!!!)
+        
 
         LoadCommnads();
         timeHandler.OnEndCycle += () => OnEndCycle();

@@ -48,7 +48,6 @@ public class ConnectionController : MonoBehaviour
         to.Addingredient(this, ingredientAllowed);
     }
 
-
     public void Connect(NodeController from,NodeController to,IngredientData ingredientAllowed)
     {
         this.from = from;

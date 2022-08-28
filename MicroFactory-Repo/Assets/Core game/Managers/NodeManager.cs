@@ -1,5 +1,6 @@
 using RA.CommandConsole;
 using RA.Inputs;
+using RA.UtilMonobehaviours;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,9 @@ public class NodeManager : MonoBehaviour
 
     private List<NodeController> nodes = new List<NodeController>();
 
-    public void Load(GameState.NodeState[] nodesState)
+    public List<NodeController> GetNodes()
     {
-        foreach (var state in nodesState)
-        {
-            var node = CreateNodeByName(state.name);
-
-        }
+        return new List<NodeController>(nodes);
     }
 
     public float GetMaintainCost()
@@ -26,25 +23,33 @@ public class NodeManager : MonoBehaviour
         return total;
     }
 
-    public NodeController CreateNodeByIndex(int i)
+    public NodeController CreateNodeByIndex(int i, float startTime = 0f)
     {
         var data = ResourcesLoader.GetNode(i);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
-        node.Init(data, 0);
+        node.Init(data, startTime);
+        nodes.Add(node);
         return node;
     }
 
-    public NodeController CreateNodeByName(string name)
+    internal NodeController GetNode(string name)
+    {
+        return nodes.Find(n => n.name == name);
+    }
+
+    public NodeController CreateNodeByName(string name, float startTime = 0f)
     {
         var data = ResourcesLoader.GetNode(name);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
-        node.Init(data, 0);
+        node.Init(data, startTime);
+        nodes.Add(node);
         return node;
     }
 
     internal void RemoveAll()
     {
-        throw new System.NotImplementedException();
+        nodes.ForEach(n => Destroy(n.gameObject));
+        nodes = new List<NodeController>();
     }
 
     public void CreateNodeByTag(string s)
@@ -64,11 +69,15 @@ public class NodeManager : MonoBehaviour
     {
         var node = nodes.Find(n => n.name.Equals(name));
         nodes.Remove(node);
+        Destroy(node.gameObject);
     }
 
     public void RemoveNodeByindex(int n)
     {
+        var node = nodes[n];
         nodes.RemoveAt(n);
+        Destroy(node.gameObject);
+
     }
 
     private void Awake()
