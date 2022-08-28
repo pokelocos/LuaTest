@@ -10,6 +10,7 @@ public class NodeData : ScriptableObject // atributos publico (???)
 {
     public string nodeName;
     public string description;
+    public int maintainCost;
     public Sprite icon;
     public List<string> tags;
     public List<RecipeData> recipes;
@@ -35,6 +36,7 @@ public class NodeData : ScriptableObject // atributos publico (???)
         var inst = ScriptableObject.CreateInstance("NodeData") as NodeData;
         inst.nodeName = info.name;
         inst.description = info.description;
+        inst.maintainCost = info.maintainCost;
         inst.icon = ModLoader.GetImage(info.iconName);
         inst.bgColor = Commons.StrToColor(info.backgroundColor);
         inst.iconColor = Commons.StrToColor(info.iconName);
@@ -62,6 +64,7 @@ public struct NodeInfo
 {
     [XmlElement(ElementName = "Name")] public string name;
     [XmlElement(ElementName = "Description")] public string description;
+    [XmlElement(ElementName = "MaintainCost")] public int maintainCost;
     [XmlElement(ElementName = "Icon")] public string iconName;
     [XmlElement(ElementName = "BackgroundColor")] public string backgroundColor;
     [XmlElement(ElementName = "IconColor")] public string iconColor;

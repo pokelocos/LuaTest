@@ -13,9 +13,10 @@ public class ParticleManager : MonoBehaviour
         LuaCore.Script.Globals["Particles"] = UserData.Create(this);
     }
 
-    public void SpawnIconParticle(string name)
+    public void SpawnIconParticle(string name,float x, float y)
     {
-
+        var p = particles.Find(p => p.name == name);
+        Instantiate(p.obj, new Vector3(x, y, 0), Quaternion.identity);
     }
 
     public void SpanwNumberParticle(string name, float x,float y, float value)
@@ -29,6 +30,7 @@ public class ParticleManager : MonoBehaviour
         throw new NotImplementedException();
     }
 
+    [System.Serializable]
     public struct particleObj
     {
         public string name;

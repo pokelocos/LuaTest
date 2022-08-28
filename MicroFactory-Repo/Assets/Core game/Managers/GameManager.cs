@@ -1,3 +1,4 @@
+using DataSystem;
 using RA.CommandConsole;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,12 +20,16 @@ public class GameManager : MonoBehaviour
     public CameraHandler cameraHandler;
     public DragHandler dragHandler;
 
+    private int cycle = 0;
+    private GameState state;
 
     // Start is called before the first frame update
     void Start()
     {
-        LoadCommnads();
+        var data = DataManager.LoadData<Data>();
+        state = data.gameState;
 
+        LoadCommnads();
         timeHandler.OnEndCycle += () => OnEndCycle();
     }
 
@@ -36,6 +41,20 @@ public class GameManager : MonoBehaviour
 
     private void OnEndCycle()
     {
+        cycle++;
+        if((cycle % 3 == 0) || cycle <= 3)
+        {
+            timeHandler.SetTimeScale(0);
+            timeHandler.ActualizeToggles();
+            var nodeDatas = ResourcesLoader.GetNodes();
+            var effectDatas = ResourcesLoader.GetEffects();
+            var rewards = rewardManager.GenerateRewards(nodeDatas.ToArray(), effectDatas.ToArray(), 3, UnityEngine.Random.Range(2, 4), 3, cycle); // nodeDatas y effectDatas podria ser estatica y global en otra clase que guarde datas
+            rewardManager.ShowRewards(rewards);
+        }
+
+        // calcular costo ede mantecion de nodos
+        var cost = nodeManager.GetMaintainCost();
+
         var gm = gameModeManager;
         if(gm.WinCondition())
         {

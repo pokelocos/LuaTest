@@ -30,12 +30,14 @@ public static class ResourcesLoader
     public static int NodeAmount() => nodeDatas.Count;
     public static NodeData GetNode(string name) => nodeDatas.First(x => x.name.Equals(name));
     public static NodeData GetNode(int i) => nodeDatas[i];
+    public static List<NodeData> GetNodes() => new List<NodeData>(nodeDatas);
     public static NodeData[] GetNodesByTag(string tag) => nodeDatas.Where(x => x.tags.Contains(tag)).ToArray();
 
     // Effects
     public static int EffectAmount() => effectDatas.Count;
     public static EffectData GetEffect(string name) => effectDatas.First(x => x.name.Equals(name));
     public static EffectData GetEffect(int i) => effectDatas[i];
+    public static List<EffectData> GetEffects() => new List<EffectData>(effectDatas);
 
     // GameModes
     // IMPLEMENTAR

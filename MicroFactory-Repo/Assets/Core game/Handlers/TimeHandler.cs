@@ -31,12 +31,19 @@ public class TimeHandler : MonoBehaviour
     }
 
 
-
     public void SetTimeScale(float value)
     {
         if (value == Time.timeScale)
             return;
 
         Time.timeScale = value;
+    }
+
+    public void ActualizeToggles()
+    {
+        var value = (int)Time.timeScale;
+        pauseToggle.isOn = (value == 0);
+        playToggle.isOn = (value == 1);
+        speedPlayToggle.isOn = (value == 4);
     }
 }

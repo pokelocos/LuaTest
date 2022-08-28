@@ -77,6 +77,11 @@ public class NodeController : MonoBehaviour
         TryStartProduction();
     }
 
+    public float GetMaintainCost()
+    {
+        return data.maintainCost; // aqui hay que clacularle los effectos que le puedan estar subiendo el coste (!!)
+    }
+
    
     private void OnMouseOver()
     {

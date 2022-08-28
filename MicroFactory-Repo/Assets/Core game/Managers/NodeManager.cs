@@ -10,18 +10,36 @@ public class NodeManager : MonoBehaviour
 
     private List<NodeController> nodes = new List<NodeController>();
 
-    public void CreateNodeByIndex(int i)
+    public void Load(GameState.NodeState[] nodesState)
+    {
+        foreach (var state in nodesState)
+        {
+            var node = CreateNodeByName(state.name);
+
+        }
+    }
+
+    public float GetMaintainCost()
+    {
+        var total = 0f;
+        nodes.ForEach(n => total += n.GetMaintainCost()); // aqui  podria calcularse un multiplicador e coste global (!!!)
+        return total;
+    }
+
+    public NodeController CreateNodeByIndex(int i)
     {
         var data = ResourcesLoader.GetNode(i);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, 0);
+        return node;
     }
 
-    public void CreateNodeByName(string name)
+    public NodeController CreateNodeByName(string name)
     {
         var data = ResourcesLoader.GetNode(name);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, 0);
+        return node;
     }
 
     internal void RemoveAll()
