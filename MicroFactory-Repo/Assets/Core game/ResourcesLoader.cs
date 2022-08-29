@@ -143,7 +143,7 @@ public static class ResourcesLoader
 
 
     [Command("Help nodeNames", "show a list of loaded nodes.", "Help node names")]
-    public static void GetNodesNames()  // esto podria ir en la clase "ResourceLoader" (?)
+    public static void GetNodesNames() 
     {
         Debug.Log(nodeDatas.Count);
         foreach (var node in nodeDatas)
@@ -154,13 +154,13 @@ public static class ResourcesLoader
     }
 
     [Command("Help effectNames", "show a list of loaded effects.", "Help effect names")]
-    public static void GetEffectNames()  // esto podria ir en la clase "ResourceLoader" (?)
+    public static void GetEffectNames()  
     {
         effectDatas.ForEach(n => Commands.Log(n.name));
     }
 
     [Command("Help ingredientNames", "show a list of loaded ingredients.", "Help ingredient names")]
-    public static void GetIngredientNames()  // esto podria ir en la clase "ResourceLoader" (?)
+    public static void GetIngredientNames() 
     {
         ingredientDatas.ForEach(n => Commands.Log(n.name));
     }

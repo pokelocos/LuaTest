@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c486dc7da8883b4f9eca4d216423241, type: 3}
+  m_Name: Custom GameMode
+  m_EditorClassIdentifier: 
+  nameGameMode: Bussines Mode
+  description: Corresponds to the normal game mode, in this mode you can enjoy the
+    experience of managing.
+  startMoney: 1000
+  maxPoint: 5
+  allowMods: 1
+  nodes:
+  - nodeData: {fileID: 11400000, guid: a38e64044127f0648a260aa4ada9217e, type: 2}
+    position: {x: -6, y: 0}
+  - nodeData: {fileID: 11400000, guid: 459aded6a8e1cdc40af1817acdbc0b1f, type: 2}
+    position: {x: 0, y: 0}
+  - nodeData: {fileID: 11400000, guid: b6c253d06eb80dc49967f3f9faaff6ec, type: 2}
+    position: {x: 6, y: 0}

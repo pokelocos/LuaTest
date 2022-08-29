@@ -23,6 +23,10 @@ public class LoadManager : MonoBehaviour
     {
         var data = DataManager.LoadData<Data>();
         loadState = data.gameState;
+
+        if (loadState == null)
+            return;
+
         LoadNodes();
         LoadConnections();
         LoadEffect();
@@ -45,25 +49,27 @@ public class LoadManager : MonoBehaviour
 
     private void LoadEffect()
     {
-        throw new System.NotImplementedException();
+        foreach (var state in loadState.effects)
+        {
+            var effect = effectManager.CreateEffectByName(state.name, state.currentTime);
+        }
     }
 
-    /*
+    
     private GameState.EffectState[] GenerateEffectsState()
     {
         var toReturn = new List<GameState.EffectState>();
         foreach (var effect in effectManager.GetEffects())
         {
-            effect.g
-            var name = effects[i].Data.name;
-            var ct = effects[i].CurrentTime;
-            effectSave[i] = new EffectState(name, ct);
+            var timer = effect.GetComponent<ClockTimer>();
+            var name = effect.Data.effectName;
+            var state = new GameState.EffectState(name, timer.Current);
+            toReturn.Add(state);
         }
-        gameState.SetEffects(effectSave);
-        Debug.Log("<color=#FFC300>[Node Engine, saveSys]</color> <b>" + effectSave.Length + "</b> effects saved.");
-
+        Debug.Log("<color=#FFC300>[Node Engine, saveSys]</color> <b>" + toReturn.Count + "</b> effects saved.");
+        return toReturn.ToArray();
     }
-    */
+    
 
     public void LoadNodes()
     {

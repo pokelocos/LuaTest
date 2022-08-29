@@ -629,6 +629,7 @@ GameObject:
   - component: {fileID: 332803340285016117}
   - component: {fileID: 1363822162}
   - component: {fileID: 1917780772247001478}
+  - component: {fileID: 6602430356943248658}
   m_Layer: 5
   m_Name: Effect_Pref
   m_TagString: Untagged
@@ -668,7 +669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc084e8eae6e3e24c8497c6e97e30d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 332803340285016117}
 --- !u!114 &332803340285016117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +756,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6602430356943248658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332803340285016123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159639183aea854429a797f95062e49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  affectedByGlobalTime: 1
+  activeOnLoad: 1
+  reverse: 0
+  loop: 0
+  current: 0
+  max: 5
+  multiplier: 1
 --- !u!1 &611510590548749647
 GameObject:
   m_ObjectHideFlags: 0

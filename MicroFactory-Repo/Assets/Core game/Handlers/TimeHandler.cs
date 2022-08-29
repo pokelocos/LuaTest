@@ -29,7 +29,23 @@ public class TimeHandler : MonoBehaviour
 
         SetTimeScale(0);
     }
+    
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            int v = 0;
+            if (Time.timeScale == 0)
+                v = 1;
+            else if (Time.timeScale == 1)
+                v = 4;
+            else if (Time.timeScale == 4)
+                v = 0;
 
+            SetTimeScale(v);
+            ActualizeToggles();
+        }
+    }
 
     public void SetTimeScale(float value)
     {

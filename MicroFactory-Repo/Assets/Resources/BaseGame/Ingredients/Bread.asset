@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7073df40453cc57438bc51059f1fccfa, type: 3}
-  m_Name: Bread
+  m_Name: bread
   m_EditorClassIdentifier: 
-  ingredientName: Bread
+  ingredientName: bread
   value: 6
-  icon: {fileID: 21300000, guid: e6fde5115ef02ce49b6a61f7ad9d90c5, type: 3}
+  icon: {fileID: 21300000, guid: 0ffd48ae3000821448433fe110209930, type: 3}
   primaryColor: {r: 1, g: 0.5882353, b: 0, a: 1}
   secondaryColor: {r: 0.6981132, g: 0.4364176, b: 0.062566735, a: 1}
   tags:

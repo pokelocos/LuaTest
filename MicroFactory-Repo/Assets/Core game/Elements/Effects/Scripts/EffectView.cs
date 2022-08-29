@@ -87,7 +87,7 @@ public class EffectView : MonoBehaviour
         mainClock.color = clock;
     }
 
-    public void SetTimer(float max, float current)
+    public void SetTimer(float current, float max)
     {
         var dt = 1 - (current / max);
         mainClock.fillAmount = dt;

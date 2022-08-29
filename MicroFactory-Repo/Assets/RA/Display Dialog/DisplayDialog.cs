@@ -17,18 +17,6 @@ public class DisplayDialog : MonoBehaviour //mejorar nombre
     [SerializeField] private DiagButton confirm;
     [SerializeField] private DiagButton decline;
 
-    //[Header("Don't show again toggle")]
-    //[SerializeField] private Toggle ShowAgain;
-    //[SerializeField] private Text label;
-
-    private void OnEnable()
-    {
-        //if(!ShowToggle)
-        //{
-        //    ShowAgain.gameObject.SetActive(false);
-        //}
-    }
-
     public void Display(string main, Action confirmAction, string secondary = "", Action declineAction = null)
     {
         Clear();

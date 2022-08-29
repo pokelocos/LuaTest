@@ -7,6 +7,7 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour
 {
     [SerializeField] private EffectController effect_Pref;
+    [SerializeField] private Transform pivot;
 
     private List<EffectController> effects = new List<EffectController>();
 
@@ -18,20 +19,22 @@ public class EffectManager : MonoBehaviour
 
     public List<EffectController> GetEffects() => new List<EffectController>(effects);
 
-    public void CreateEffectByIndex(int i)
+    public EffectController CreateEffectByIndex(int i, float startTime = 0)
     {
         var data = ResourcesLoader.GetEffect(i);
-        var effect = Instantiate(effect_Pref, Vector2.zero, Quaternion.identity);
-        effect.Init(data, 0);
+        var effect = Instantiate(effect_Pref, pivot);
+        effect.Init(data, startTime);
         effects.Add(effect);
+        return effect;
     }
 
-    public void CreateEffectByName(string name)
+    public EffectController CreateEffectByName(string name, float startTime = 0)
     {
         var data = ResourcesLoader.GetEffect(name);
-        var effect = Instantiate(effect_Pref, Vector2.zero, Quaternion.identity);
-        effect.Init(data, 0);
+        var effect = Instantiate(effect_Pref, pivot);
+        effect.Init(data, startTime);
         effects.Add(effect);
+        return effect;
     }
 
     public void CreateEffectByTag(string s)
