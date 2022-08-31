@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159639183aea854429a797f95062e49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectedByGlobalTime: 1
   activeOnLoad: 0
   reverse: 0
   loop: 0

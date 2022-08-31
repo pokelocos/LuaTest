@@ -32,15 +32,19 @@ public class NodeManager : MonoBehaviour
         return node;
     }
 
+    internal NodeController GetNode(int index)
+    {
+        return nodes[index];
+    }
+
     internal NodeController GetNode(string name)
     {
-        return nodes.Find(n => n.name == name);
+        return nodes.Find(n => n.Data.nodeName == name);
     }
 
     public NodeController CreateNodeByName(string name, float startTime = 0f)
     {
-        Debug.Log("rl.gn.c: "+ResourcesLoader.GetNodes().Count);
-        ResourcesLoader.GetNodes().ForEach(n => Debug.Log(n.name +": "+ name));
+        ResourcesLoader.GetNodes().ForEach(nn => Debug.Log(name+"=" + nn.name+ "=>"+ (name == nn.name)));
         var data = ResourcesLoader.GetNode(name);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, startTime);

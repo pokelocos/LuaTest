@@ -15,12 +15,12 @@ MonoBehaviour:
   nodeName: Farm
   description: ---
   maintainCost: 10
-  icon: {fileID: 21300000, guid: 0ffd48ae3000821448433fe110209930, type: 3}
+  icon: {fileID: 21300000, guid: c3c40451655148c429e6e3790aae8e3c, type: 3}
   tags:
   - Processor
   - Transformer
   recipes:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 5b01b42f2b6617c4e8bb3e268b6584de, type: 2}
   bgColor: {r: 0.20784312, g: 0.6499109, b: 0.94509804, a: 1}
   iconColor: {r: 1, g: 1, b: 1, a: 1}
   timerColor: {r: 1, g: 1, b: 1, a: 1}

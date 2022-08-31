@@ -21,7 +21,8 @@ using UnityEngine;
 public class EffectData : ScriptableObject
 {
     public string effectName;
-    public string description;
+    [TextArea] public string lore;
+    [TextArea] public string description;
     public Sprite icon;
     public Color bgColor;
     public Color timerColor;
@@ -38,6 +39,7 @@ public class EffectData : ScriptableObject
     {
         var inst = ScriptableObject.CreateInstance("EffectData") as EffectData;
         inst.effectName = info.name;
+        inst.lore = info.lore;
         inst.description = info.description;
         inst.icon = ModLoader.GetImage(info.icon);
         inst.bgColor = Commons.StrToColor(info.backgroundColor);
@@ -53,6 +55,7 @@ public class EffectData : ScriptableObject
 public struct EffectInfo
 {
     [XmlElement(ElementName = "Name")] public string name;
+    [XmlElement(ElementName = "Lore")] public string lore;
     [XmlElement(ElementName = "Description")] public string description;
     [XmlElement(ElementName = "Icon")] public string icon;
     [XmlElement(ElementName = "BackgroundColor")] public string backgroundColor;

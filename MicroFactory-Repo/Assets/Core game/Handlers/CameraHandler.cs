@@ -9,7 +9,6 @@ public class CameraHandler : MonoBehaviour
     private Vector3 cameraFollowPosition;
     private bool edgeScrolling;
     private float cameraZoom = 8;
-    private NodeView draggingNode = null;
 
     [SerializeField] private Vector3 cameraStartPosition = new Vector3(0, 0, -10);
 
@@ -180,31 +179,39 @@ public class CameraHandler : MonoBehaviour
     {
         Vector3 newCameraPosition = Vector3.zero;
 
-        if (draggingNode != null) return;
-        if (Input.GetMouseButton(0))
+       
+        if(Input.GetMouseButtonDown(0))
         {
-
-            difference = (cameraFollow.ScreenToWorldPoint(Input.mousePosition)) - cameraFollow.transform.position;
             if (drag == false)
             {
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
+                Collider2D target = Physics2D.OverlapPoint(mousePosition);
+                if (target != null)
+                    return;
+
                 drag = true;
                 origen = cameraFollow.ScreenToWorldPoint(Input.mousePosition);
             }
         }
-        else
+        else if (Input.GetMouseButton(0))
+        {
+            difference = (cameraFollow.ScreenToWorldPoint(Input.mousePosition)) - cameraFollow.transform.position;
+            if (drag == true)
+            {
+                float x = Mathf.Clamp((origen - difference).x, movementBoundries.x - movementBoundries.width, movementBoundries.x + movementBoundries.width);
+                float y = Mathf.Clamp((origen - difference).y, movementBoundries.y - movementBoundries.height, movementBoundries.y + movementBoundries.height);
+
+                newCameraPosition = new Vector3(x, y, (origen - difference).z);
+
+                transform.position = newCameraPosition;
+                cameraFollowPosition = transform.position;
+            }
+        }
+        else if (Input.GetMouseButtonUp(0))
         {
             drag = false;
         }
 
-        if (drag)
-        {
-            float x = Mathf.Clamp((origen - difference).x, movementBoundries.x - movementBoundries.width, movementBoundries.x + movementBoundries.width);
-            float y = Mathf.Clamp((origen - difference).y, movementBoundries.y - movementBoundries.height, movementBoundries.y + movementBoundries.height);
 
-            newCameraPosition = new Vector3(x, y, (origen - difference).z);
-
-            transform.position = newCameraPosition;
-            cameraFollowPosition = transform.position;
-        }
     }
 }

@@ -32,8 +32,8 @@ public class NodeController : MonoBehaviour
     public int OutputCount => outputs.Count();
 
 
-    public int MaxInput => data.MaxInput;
-    public int MaxOutput => data.MaxOutput;
+    public int MaxInput => (currentRecipe != null) ? currentRecipe.inputIngredients.Count : data.recipes.Max(r => r.inputIngredients.Count);
+    public int MaxOutput => (currentRecipe != null)? currentRecipe.outputIngredients.Count : 0;
 
     public void AddInput(ConnectionController connection)
     {
@@ -201,7 +201,10 @@ public class NodeController : MonoBehaviour
         var recipes = data.recipes;
         for (int i = 0; i < recipes.Count(); i++)
         {
-            if (recipes[i].inputIngredients.Count() == 0)
+            if (recipes == null)
+                continue;
+
+            if (recipes[i].inputIngredients.Count() == 0) // esto esta bienpor que desending
             {
                 CurrentRecipe = recipes[i];
                 break;

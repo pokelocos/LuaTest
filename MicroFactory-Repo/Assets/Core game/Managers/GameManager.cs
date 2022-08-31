@@ -2,6 +2,7 @@ using DataSystem;
 using RA.CommandConsole;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -34,6 +35,16 @@ public class GameManager : MonoBehaviour
 
         LoadCommnads();
         timeHandler.OnEndCycle += () => OnEndCycle();
+        rewardManager.OnSelectedReward += (r) =>
+        {
+            var nodes = r.nodes.ToList();
+            var effects = r.effects.ToList();
+            nodes.ForEach(n => {
+                nodeManager.CreateNodeByName(n.nodeName);
+                });
+            effects.ForEach(e => effectmanager.CreateEffectByName(e.effectName));
+        };
+
     }
 
     // Update is called once per frame
@@ -53,6 +64,7 @@ public class GameManager : MonoBehaviour
             var effectDatas = ResourcesLoader.GetEffects();
             var rewards = rewardManager.GenerateRewards(nodeDatas.ToArray(), effectDatas.ToArray(), 3, UnityEngine.Random.Range(2, 4), 3, cycle); // nodeDatas y effectDatas podria ser estatica y global en otra clase que guarde datas
             rewardManager.ShowRewards(rewards);
+            Debug.Log("A");
         }
 
         // calcular costo ede mantecion de nodos

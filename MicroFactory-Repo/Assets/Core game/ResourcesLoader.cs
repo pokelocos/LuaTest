@@ -14,6 +14,7 @@ public static class ResourcesLoader
     private static List<RecipeData> recipeDatas = new List<RecipeData>();
     private static List<NodeData> nodeDatas = new List<NodeData>();
     private static List<EffectData> effectDatas = new List<EffectData>();
+    private static List<TagData> tagDatas = new List<TagData>();
     // private static List<GameModeData> gameModeDatas = new List<GameModeData>();
     // private static List<TokensData> tokensDatas = new List<TokensData>(); // añadir ??
 
@@ -24,20 +25,26 @@ public static class ResourcesLoader
 
     // Recipes
     public static int RecipeAmount() => recipeDatas.Count;
-    public static RecipeData GetRecipe(string name) => recipeDatas.First(x => x.name.Equals(name)); // name ??
+    public static RecipeData GetRecipe(string name) => recipeDatas.First(x => x.name.Equals(name)); // name fix (!!!)
 
     // Nodes
     public static int NodeAmount() => nodeDatas.Count;
-    public static NodeData GetNode(string name) => nodeDatas.First(x => x.name.Equals(name));
+    public static NodeData GetNode(string name) => nodeDatas.First(x => x.nodeName.Equals(name));
     public static NodeData GetNode(int i) => nodeDatas[i];
     public static List<NodeData> GetNodes() => new List<NodeData>(nodeDatas);
     public static NodeData[] GetNodesByTag(string tag) => nodeDatas.Where(x => x.tags.Contains(tag)).ToArray();
 
     // Effects
     public static int EffectAmount() => effectDatas.Count;
-    public static EffectData GetEffect(string name) => effectDatas.First(x => x.name.Equals(name));
+    public static EffectData GetEffect(string name) => effectDatas.First(x => x.effectName.Equals(name));
     public static EffectData GetEffect(int i) => effectDatas[i];
     public static List<EffectData> GetEffects() => new List<EffectData>(effectDatas);
+
+    // Tags
+    public static int TagsAmount() => tagDatas.Count;
+    public static TagData GetTag(string name) => tagDatas.First(x => x.value.Equals(name));
+    public static TagData GetTag(int i) => tagDatas[i];
+    public static List<TagData> GetTags() => new List<TagData>(tagDatas);
 
     // GameModes
     // IMPLEMENTAR
@@ -71,7 +78,12 @@ public static class ResourcesLoader
         Debug.Log("<color=#70FB5F>[Node Engine, Resources]</color> Load <b>" + nodeDatas.Count + "</b> node resources.");
 
         // Load Effects
-        // IMPLEMENTAR
+        effectDatas = Resources.LoadAll<EffectData>("BaseGame/Effects").ToList();
+        Debug.Log("<color=#70FB5F>[Node Engine, Resources]</color> Load <b>" + effectDatas.Count + "</b> effect resources.");
+
+        // Load Tags
+        tagDatas = Resources.LoadAll<TagData>("BaseGame/Tags").ToList();
+        Debug.Log("<color=#70FB5F>[Node Engine, Resources]</color> Load <b>" + tagDatas.Count + "</b> tag resources.");
 
         // Load GameModes
         // IMPLEMENTAR

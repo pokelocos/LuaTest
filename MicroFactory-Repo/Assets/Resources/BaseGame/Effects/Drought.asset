@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e94699e6273cda45b02fc76e292107f, type: 3}
+  m_Name: Drought
+  m_EditorClassIdentifier: 
+  effectName: Drought
+  lore: The producing farms do not receive the necessary water to be able to maintain
+    it at a normal rate.
+  description: Reduces the production speed of farms by 30%.
+  icon: {fileID: 21300000, guid: 69a4936b9b55dab4db87b7ad3af8663b, type: 3}
+  bgColor: {r: 1, g: 0.3160377, b: 0.3160377, a: 1}
+  timerColor: {r: 1, g: 1, b: 1, a: 1}
+  isPermanent: 0
+  lifeSpan: 180
+  speed: 0
+  successProbability: 0
+  WhiteListAffected: []
+  BlackListAffected: []

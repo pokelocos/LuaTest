@@ -3909,7 +3909,7 @@ MonoBehaviour:
   affectedByGlobalTime: 1
   activeOnLoad: 1
   reverse: 0
-  loop: 0
+  loop: 1
   current: 0
   max: 60
   multiplier: 1
@@ -5002,6 +5002,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -34.45295
       objectReference: {fileID: 0}
+    - target: {fileID: 4242158531932877760, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 527836325}
+    - target: {fileID: 4242158531932877760, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectReward
+      objectReference: {fileID: 0}
     - target: {fileID: 4426051145502827944, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5058,6 +5066,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -167.24805
       objectReference: {fileID: 0}
+    - target: {fileID: 6537736628062836830, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 527836325}
+    - target: {fileID: 6537736628062836830, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectReward
+      objectReference: {fileID: 0}
     - target: {fileID: 6785431098333451016, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5089,6 +5105,14 @@ PrefabInstance:
     - target: {fileID: 6911790713031659485, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -34.45295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069921209577908056, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 527836325}
+    - target: {fileID: 7069921209577908056, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectReward
       objectReference: {fileID: 0}
     - target: {fileID: 7326852217389740336, guid: 863f8ec878ab8e34785e1e033ef542f7, type: 3}
       propertyPath: m_AnchorMax.y

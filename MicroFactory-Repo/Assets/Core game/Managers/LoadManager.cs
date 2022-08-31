@@ -104,10 +104,8 @@ public class LoadManager : MonoBehaviour
         var connectionsState = loadState.connections;
         foreach (var state in connectionsState)
         {
-            var ns1 = nodesState[state.nodeRelationIndex.Item1];
-            var ns2 = nodesState[state.nodeRelationIndex.Item2];
-            var n1 = nodeManager.GetNode(ns1.name);
-            var n2 = nodeManager.GetNode(ns2.name);
+            var n1 = nodeManager.GetNode(state.nodeRelationIndex.Item1);
+            var n2 = nodeManager.GetNode(state.nodeRelationIndex.Item2);
             var ing = ResourcesLoader.GetIngredient(state.ingredientName);
             var connection = connectionManager.CreateConnection(n1, n2, ing);
         }

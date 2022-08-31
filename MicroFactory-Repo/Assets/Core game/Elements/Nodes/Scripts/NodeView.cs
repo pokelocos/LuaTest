@@ -9,6 +9,7 @@ public class NodeView : MonoBehaviour
     [SerializeField] private SpriteRenderer icon;
     [SerializeField] private SpriteRenderer fillBar;
 
+    private readonly Vector3 targetHeight = new Vector3(0.55f, 0.55f, 0.55f);
     private readonly Vector3 _defaultIconScaleRatio = new Vector2(256, 256) / new Vector3(0.55f, 0.55f, 0.55f);
 
     public void Awake()
@@ -18,9 +19,12 @@ public class NodeView : MonoBehaviour
 
     public void SetView(NodeData nodeData)
     {
+        var oldSize = icon.sprite.bounds.size.y;
         body.color = nodeData.bgColor;
         icon.sprite = nodeData.icon;
-        icon.transform.localScale = icon.sprite.rect.size / _defaultIconScaleRatio;
+        var newSize = icon.sprite.bounds.size.y;
+        icon.transform.localScale = (oldSize/newSize) * targetHeight;
+
     }
 
     public void SetBodyColor(Color color)

@@ -18,7 +18,6 @@ public class RewardManager : MonoBehaviour // reward manager
 
     private void Start()
     {
-        this.gameObject.SetActive(false);
         LoadCommnads(); // me gustaria no tener que acordarme de cargar este script
     }
 
@@ -52,6 +51,7 @@ public class RewardManager : MonoBehaviour // reward manager
 
     public void ShowRewards(Reward[] rewards) // esto deberia estar en la view del panel de estra
     {
+        Debug.Log("B");
         lastTimeScale = Time.timeScale;
         this.rewards = rewards;
 

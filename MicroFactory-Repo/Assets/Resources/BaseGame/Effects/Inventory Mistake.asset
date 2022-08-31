@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e94699e6273cda45b02fc76e292107f, type: 3}
+  m_Name: Inventory Mistake
+  m_EditorClassIdentifier: 
+  effectName: Inventory Mistake
+  lore: Management at grocery stores is deplorable.
+  description: Every time you receive a product there is a 25% chance that the product
+    will be lost.
+  icon: {fileID: 21300000, guid: 0bd243b1cb819c54b8a65ecc632ec8ba, type: 3}
+  bgColor: {r: 1, g: 0.3160377, b: 0.3160377, a: 1}
+  timerColor: {r: 1, g: 1, b: 1, a: 1}
+  isPermanent: 0
+  lifeSpan: 180
+  speed: 0
+  successProbability: 0
+  WhiteListAffected: []
+  BlackListAffected: []
