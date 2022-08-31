@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c486dc7da8883b4f9eca4d216423241, type: 3}
   m_Name: Custom GameMode
   m_EditorClassIdentifier: 
-  nameGameMode: Bussines Mode
-  description: Corresponds to the normal game mode, in this mode you can enjoy the
-    experience of managing.
+  nameGameMode: Custom Mode
+  description: This is the extended game mode, here you can play with the mods you
+    added to the game.
   startMoney: 1000
   maxPoint: 5
   allowMods: 1

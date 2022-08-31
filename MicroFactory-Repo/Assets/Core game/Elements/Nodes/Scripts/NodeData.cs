@@ -25,14 +25,17 @@ public class NodeData : ScriptableObject // atributos publico (???)
     public int MaxInput => inputMax;
     public int MaxOutput => outputMax;
 
-    public void Awake()
+
+    public void Start()
     {
         if (recipes.Count > 0)
         {
+            Debug.Log("rep: " + recipes.Count);
             inputMax = recipes.Max(x => x.inputIngredients.Count);
             outputMax = recipes.Max(x => x.outputIngredients.Count);
         }
     }
+
 
     public static NodeData CreateFromInfo(NodeInfo info)
     {

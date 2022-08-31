@@ -13,6 +13,11 @@ public class LoadManager : MonoBehaviour
     private GameState loadState;
     private GameState saveState;
 
+    private void Awake()
+    {
+        ResourcesLoader.LoadDataGame();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +29,7 @@ public class LoadManager : MonoBehaviour
         var data = DataManager.LoadData<Data>();
         loadState = data.gameState;
 
-        if (loadState == null)
+        if(loadState == null)
             return;
 
         LoadNodes();

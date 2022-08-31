@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Bussines GameMode
   m_EditorClassIdentifier: 
   nameGameMode: Bussines Mode
-  description: 
+  description: Corresponds to the normal game mode, in this mode you can enjoy the
+    experience of managing.
   startMoney: 1000
   maxPoint: 5
+  allowMods: 0
   nodes:
   - nodeData: {fileID: 11400000, guid: a38e64044127f0648a260aa4ada9217e, type: 2}
     position: {x: -6, y: 0}

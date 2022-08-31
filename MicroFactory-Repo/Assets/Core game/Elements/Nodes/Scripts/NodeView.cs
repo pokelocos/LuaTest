@@ -9,11 +9,11 @@ public class NodeView : MonoBehaviour
     [SerializeField] private SpriteRenderer icon;
     [SerializeField] private SpriteRenderer fillBar;
 
-    private Vector3 _defaultIconScaleRatio;
+    private readonly Vector3 _defaultIconScaleRatio = new Vector2(256, 256) / new Vector3(0.55f, 0.55f, 0.55f);
 
     public void Awake()
     {
-        _defaultIconScaleRatio = icon.sprite.rect.size * icon.transform.localScale;
+        //_defaultIconScaleRatio = new Vector2(256,256) * new Vector3(0.55f, 0.55f, 0.55f);
     }
 
     public void SetView(NodeData nodeData)

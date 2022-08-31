@@ -9,7 +9,7 @@ public class MainMenu_Scene : MonoBehaviour
 {
     public Button continueButton;
 
-    public GameObject areYouSurePanel;
+    public DisplayDialog areYouSurePanel;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class MainMenu_Scene : MonoBehaviour
 
     public void Continue()
     {
-        SceneManager.LoadScene("Game Scene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void TryPlayButton()
@@ -34,12 +34,19 @@ public class MainMenu_Scene : MonoBehaviour
 
         if (data.IsGameInProgress())
         {
-            areYouSurePanel.SetActive(true);
+            areYouSurePanel.Display("Are you sure to start a new game?", NewGame, "If you start a new game, the progress of the current game will be lost.");
         }
         else
         {
             SceneManager.LoadScene("Select Mode Scene");
         }
+    }
+
+    public void NewGame()
+    {
+        var data = DataManager.LoadData<Data>();
+        data.gameState = null;
+        SceneManager.LoadScene("Select Mode Scene");
     }
 
 }

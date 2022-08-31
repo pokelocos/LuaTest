@@ -39,6 +39,8 @@ public class NodeManager : MonoBehaviour
 
     public NodeController CreateNodeByName(string name, float startTime = 0f)
     {
+        Debug.Log("rl.gn.c: "+ResourcesLoader.GetNodes().Count);
+        ResourcesLoader.GetNodes().ForEach(n => Debug.Log(n.name +": "+ name));
         var data = ResourcesLoader.GetNode(name);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, startTime);

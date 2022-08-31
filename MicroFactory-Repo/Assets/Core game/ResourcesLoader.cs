@@ -48,10 +48,7 @@ public static class ResourcesLoader
     /// </summary>
     public static void LoadDataGame() // llamar al inciar la escena de juego!!!
     {
-        //if(allowBaseData)
-        {
-            LoadBaseGameData();
-        }
+        LoadBaseGameData();
 
         if(allowModData)
         {
