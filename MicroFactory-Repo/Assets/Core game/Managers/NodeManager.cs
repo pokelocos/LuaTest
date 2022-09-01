@@ -8,6 +8,7 @@ using UnityEngine;
 public class NodeManager : MonoBehaviour
 {
     [SerializeField] private NodeController node_Pref;
+    [SerializeField] private ParticleManager particleManager;
 
     private List<NodeController> nodes = new List<NodeController>();
 
@@ -44,10 +45,10 @@ public class NodeManager : MonoBehaviour
 
     public NodeController CreateNodeByName(string name, float startTime = 0f)
     {
-        ResourcesLoader.GetNodes().ForEach(nn => Debug.Log(name+"=" + nn.name+ "=>"+ (name == nn.name)));
         var data = ResourcesLoader.GetNode(name);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, startTime);
+        node.OnEndRecipe += (value,pos) => particleManager.SpanwNumberParticle("Money", pos.x,pos.y,value);
         nodes.Add(node);
         return node;
     }

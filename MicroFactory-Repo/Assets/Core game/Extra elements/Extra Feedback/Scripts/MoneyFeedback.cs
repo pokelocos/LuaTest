@@ -11,13 +11,21 @@ public class MoneyFeedback : ExtraFeedback
     [SerializeField] private TextMesh textShadow;
     [SerializeField] private Animator animator;
 
-    public override void Show(Transform target,params object[] prms)
+    public override void Show(Transform target = null,params object[] prms)
     {
+        if (prms.Length <= 0)
+            return;
+
+        var value = int.Parse(prms[0].ToString());
+
         base.Show(target);
 
-        string msg = prms[0].ToString();
-        text.text = msg;
-        textShadow.text = msg;
-        text.color = int.Parse(msg) >= 0 ? goodColor : badColor;
+        text.text = textShadow.text = "$" + value;
+        text.color = value >= 0 ? goodColor : badColor;
+    }
+
+    public void OnEndAnimation()
+    {
+        Destroy(this.gameObject);
     }
 }

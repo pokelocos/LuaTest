@@ -25,6 +25,9 @@ public class ExtraFeedback : MonoBehaviour
 
     private void Update()
     {
+        if (target == null)
+            return;
+
         if(followTarget)
         {
             this.transform.position = target.position + offset;

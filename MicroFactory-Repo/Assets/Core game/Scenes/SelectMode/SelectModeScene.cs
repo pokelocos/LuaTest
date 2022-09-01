@@ -37,7 +37,7 @@ public class SelectModeScene : MonoBehaviour
         {
             var node = starNode.nodeData;
             var pos = starNode.position;
-            nodes.Add(new GameState.NodeState(node.name, pos.x, pos.y, 0));
+            nodes.Add(new GameState.NodeState(node.nodeName, pos.x, pos.y, 0));
         }
         gameState.nodes = nodes.ToArray();
 

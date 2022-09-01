@@ -43,7 +43,7 @@ public class LoadManager : MonoBehaviour
         saveState = new GameState();
         saveState.nodes = GenerateNodesState();
         saveState.connections = GenerateConnectionsState();
-        //saveState.effects = GenerateEffectsState();
+        saveState.effects = GenerateEffectsState();
         // save mods (??)
         // save basic stats (??)
 
@@ -80,6 +80,7 @@ public class LoadManager : MonoBehaviour
     {
         foreach (var state in loadState.nodes)
         {
+            Debug.Log("state: "+state.name);
             var node = nodeManager.CreateNodeByName(state.name, state.currentTime);
             node.transform.position = state.Position;
         }
@@ -117,10 +118,9 @@ public class LoadManager : MonoBehaviour
         
         foreach (var connection in connectionManager.GetConnections)
         {
-            var timer = connection.GetComponent<ClockTimer>();
             var n1 = nodeManager.GetNodes().IndexOf(connection.GetInputNode());
             var n2 = nodeManager.GetNodes().IndexOf(connection.GetOutputNode());
-            var state  = new GameState.ConnectionState(n1,n2,connection.GetIngredientAllowed().ingredientName,timer.Current);
+            var state  = new GameState.ConnectionState(n1,n2,connection.GetIngredientAllowed().ingredientName,0);
             toReturn.Add(state);
         }
         Debug.Log("<color=#FFC300>[Node Engine, saveSys]</color> <b>" + toReturn.Count + "</b> connections saved.");

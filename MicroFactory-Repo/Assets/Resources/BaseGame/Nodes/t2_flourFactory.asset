@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee46e791bfa2248b98a72bab6a3e9f, type: 3}
   m_Name: t2_flourFactory
   m_EditorClassIdentifier: 
-  nodeName: Farm
+  nodeName: flourFactory
   description: ---
   maintainCost: 10
   icon: {fileID: 21300000, guid: c3c40451655148c429e6e3790aae8e3c, type: 3}

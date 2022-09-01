@@ -27,6 +27,8 @@ public class NodeController : MonoBehaviour
     public event ConnectionEvent OnDisconnect;
     public event ConnectionEvent OnReceiveProduct;
 
+    public event Action<int,Vector2> OnEndRecipe;
+
     public NodeData Data => data;
     public int InputCount => inputs.Count();
     public int OutputCount => outputs.Count();
@@ -167,8 +169,16 @@ public class NodeController : MonoBehaviour
     {
         // Node Events
         //timer.OnStart += (clock) => { };
-        timer.OnEnd += (clock) => { if (!clock.reverse) SendProducts();};
-        timer.OnEnd += (clock) => { TryStartProduction(); };
+        timer.OnEnd += (clock) => {
+            if (!clock.reverse) { 
+                SendProducts();
+                var profit = currentRecipe.productionProfit;
+                Debug.Log("profit: "+profit);
+                if (profit != 0)
+                    OnEndRecipe?.Invoke((int)profit, this.transform.position);
+            }
+            TryStartProduction();
+        };
         timer.OnUpdate += (clock) => { nodeView.SetBarAmount((clock.Current / currentRecipe.time)); };
 
         // Connection Event
@@ -201,7 +211,7 @@ public class NodeController : MonoBehaviour
         var recipes = data.recipes;
         for (int i = 0; i < recipes.Count(); i++)
         {
-            if (recipes == null)
+            if (recipes[i] == null)
                 continue;
 
             if (recipes[i].inputIngredients.Count() == 0) // esto esta bienpor que desending

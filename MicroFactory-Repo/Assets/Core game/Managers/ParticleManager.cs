@@ -22,7 +22,8 @@ public class ParticleManager : MonoBehaviour
     public void SpanwNumberParticle(string name, float x,float y, float value)
     {
         var p = particles.Find(p => p.name == name);
-        Instantiate(p.obj, new Vector3(x, y, 0), Quaternion.identity);
+        var mf = Instantiate(p.obj, new Vector3(x, y, 0), Quaternion.identity).GetComponent<MoneyFeedback>();
+        mf.Show(null,value);
     }
 
     internal void RemoveAll()

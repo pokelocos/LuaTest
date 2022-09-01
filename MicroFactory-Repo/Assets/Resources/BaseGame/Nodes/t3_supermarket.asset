@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee46e791bfa2248b98a72bab6a3e9f, type: 3}
   m_Name: t3_supermarket
   m_EditorClassIdentifier: 
-  nodeName: Farm
+  nodeName: supermarket
   description: ---
   maintainCost: 10
   icon: {fileID: 21300000, guid: 7db2cf1dd2d557f41a7a88876755bed8, type: 3}
