@@ -9,7 +9,7 @@ public class MoneyFeedback : ExtraFeedback
 
     [SerializeField] private TextMesh text;
     [SerializeField] private TextMesh textShadow;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animator; 
 
     public override void Show(Transform target = null,params object[] prms)
     {

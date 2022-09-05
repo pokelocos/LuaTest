@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: cowFarm_1
   m_EditorClassIdentifier: 
   time: 4
-  productionProfit: 10
+  productionProfit: 0
   inputIngredients: []
   outputIngredients:
   - {fileID: 11400000, guid: ede6bffb95b8c7f4d9d3bc9a130d8d1f, type: 2}

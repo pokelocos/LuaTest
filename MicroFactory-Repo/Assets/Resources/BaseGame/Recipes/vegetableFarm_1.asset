@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: vegetableFarm_1
   m_EditorClassIdentifier: 
   time: 4
-  productionProfit: 10
+  productionProfit: 0
   inputIngredients: []
   outputIngredients:
   - {fileID: 11400000, guid: a96f3a9ea0cf92245b861e8d67dfa632, type: 2}

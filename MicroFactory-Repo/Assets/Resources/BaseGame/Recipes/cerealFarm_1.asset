@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: cerealFarm_1
   m_EditorClassIdentifier: 
   time: 4
-  productionProfit: 10
+  productionProfit: 0
   inputIngredients: []
   outputIngredients:
   - {fileID: 11400000, guid: aad2f2e2cae022a469f25492d842e95d, type: 2}
