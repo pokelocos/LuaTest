@@ -48,7 +48,9 @@ public class NodeManager : MonoBehaviour
         var data = ResourcesLoader.GetNode(name);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, startTime);
-        node.OnEndRecipe += (value,pos) => particleManager.SpanwNumberParticle("Money", pos.x,pos.y,value);
+        node.OnEndRecipe += (value, pos) => {
+            particleManager.SpanwNumberParticle("money", pos.x, pos.y, value);
+            };
         nodes.Add(node);
         return node;
     }

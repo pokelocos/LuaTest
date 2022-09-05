@@ -1,3 +1,4 @@
+using MoonSharp.Interpreter;
 using RA.UtilMonobehaviours;
 using System;
 using System.Collections;
@@ -22,7 +23,12 @@ public class TimeHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer.OnEnd += (t) => { OnEndCycle?.Invoke(); };
+        LuaCore.Script.Globals["Timer"] = UserData.Create(this);
+        LuaCore.Script.Globals["TimeManager"] = UserData.Create(this);
+        timer.OnEnd += (t) => { 
+            OnEndCycle?.Invoke();
+            LuaCore.DoFunction("OnCycleEnd");
+        };
         timer.OnUpdate += (t) => {
             dayBar.fillAmount = ((t.Current / t.Max)); 
         };
@@ -53,6 +59,7 @@ public class TimeHandler : MonoBehaviour
             return;
 
         Time.timeScale = value;
+        LuaCore.DoFunction("OnChangeTimeSpeed");
     }
 
     public void ActualizeToggles()

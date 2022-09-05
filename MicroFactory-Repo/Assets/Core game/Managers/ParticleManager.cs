@@ -4,14 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[MoonSharpUserData]
 public class ParticleManager : MonoBehaviour
 {
     public List<particleObj> particles;
 
     private void Awake()
     {
-        LuaCore.Script.Globals["Particles"] = UserData.Create(this);
+        UserData.RegisterType<ParticleManager>();
+        var pm = UserData.Create(this);
+        LuaCore.Script.Globals.Set("Particler", pm);
+        LuaCore.Script.Globals.Set("ParticleManager", pm);
     }
+
+    private void Start()
+    {
+
+    }
+
 
     public void SpawnIconParticle(string name,float x, float y)
     {

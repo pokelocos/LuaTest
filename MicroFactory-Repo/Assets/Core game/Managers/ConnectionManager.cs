@@ -1,3 +1,4 @@
+using MoonSharp.Interpreter;
 using RA.UtilMonobehaviours;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,6 +42,12 @@ public class ConnectionManager : MonoBehaviour
     {
         connectionPreview.gameObject.SetActive(false); // (!)
         ingredientPreview.gameObject.SetActive(false); // (!)
+    }
+
+    public void Start()
+    {
+        LuaCore.Script.Globals["Connector"] = UserData.Create(this);
+        LuaCore.Script.Globals["ConnectionManager"] = UserData.Create(this);
     }
 
     // Update is called once per frame
@@ -165,6 +172,9 @@ public class ConnectionManager : MonoBehaviour
 
         connections.Add(connection);
         OnCreateConnection?.Invoke(connection);
+
+        LuaCore.DoFunction("OnConnect");
+
         return connection;
     }
 

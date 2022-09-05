@@ -94,10 +94,11 @@ public static class ModLoader // change name to data loader ??
 
         for (int i = 0; i < directory.Length; i++)
         {
+            var mod = LoadXmlMod(directory[i]);
+            loadedMods.Add(mod);
             try
             {
-                var mod = LoadXmlMod(directory[i]);
-                loadedMods.Add(mod);
+                
                 Debug.Log("<color=#2283FF>[ModLoader]</color> <b>" + mod.basicInfo.name + "</b> mod has been loaded:\n" + mod.DebugInfo());
             }
             catch
@@ -143,10 +144,35 @@ public static class ModLoader // change name to data loader ??
         // XXXXX IMPLEMENTAR XXXXX
 
         //Load Lua
-        var luaString = LuaCore.ImportLUA(modRoot.FullName + "\\main.lua");
-        LuaCore.DoString(luaString);
-
+        var luas = LoadRecursiveLUA(modRoot, new List<string>());
+        luas.ForEach(l => LuaCore.LoadLuaCode(l));
+        //var luaString = LuaCore.ImportLUA(modRoot.FullName + "\\main.lua");
+        //LuaCore.LoadLuaCode(luaString);
         return mod;
+    }
+
+    private static List<string> LoadRecursiveLUA(DirectoryInfo dir,List<string> luas)
+    {
+        var files = dir.GetFiles();
+        for (int i = 0; i < files.Length; i++)
+        {
+            if (files[i].FullName.EndsWith(".lua"))
+            {
+                try
+                {
+                    string current = LuaCore.ImportLUA(files[i].FullName);
+                    luas.Add(current);
+                }
+                catch { }
+            }
+        }
+
+        var dirs = dir.GetDirectories();
+        for (int i = 0; i < dirs.Length; i++)
+        {
+            LoadRecursiveLUA(dirs[i], luas);
+        }
+        return luas;
     }
 
     private static Dictionary<string,AudioClip> LoadRecursiveSFX(DirectoryInfo dir, Dictionary<string,AudioClip> SFXs)

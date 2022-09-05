@@ -11,6 +11,12 @@ public static class LuaComands
         Debug.Log(s);
     }
 
+    [LuaCommand("Test")]
+    public static float Test(int value)
+    {
+        return value;
+    }
+
     public static class Math
     {
         

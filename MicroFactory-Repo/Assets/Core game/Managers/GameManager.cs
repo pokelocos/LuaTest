@@ -1,10 +1,12 @@
 using DataSystem;
+using MoonSharp.Interpreter;
 using RA.CommandConsole;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[MoonSharpUserData]
 public class GameManager : MonoBehaviour
 {
     [Header("Managers")]
@@ -21,14 +23,24 @@ public class GameManager : MonoBehaviour
     public CameraHandler cameraHandler;
     public DragHandler dragHandler;
 
-    private int cycle = 0;
     private GameState state;
+
+    public void Awake()
+    {
+        UserData.RegisterType<GameManager>();
+        var mf = UserData.Create(this);
+        LuaCore.Script.Globals.Set("MicroFactory", mf);
+        LuaCore.Script.Globals.Set("Game", mf);
+        LuaCore.Script.Globals.Set("MF", mf);
+
+        var data = DataManager.LoadData<Data>();
+        state = data.gameState;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        var data = DataManager.LoadData<Data>();
-        state = data.gameState;
+
        
         // ver que hacer con los mods de state.Mods (!!!)
         
@@ -53,18 +65,37 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public float GetMousePosX()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10)).x;
+    }
+
+    public float GetMousePosY()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10)).y;
+    }
+
+    public void AddMoney(int value)
+    {
+        state.basicStats.money += value;
+    }
+
+
     private void OnEndCycle()
     {
-        cycle++;
-        if((cycle % 3 == 0) || cycle <= 3)
+        state.basicStats.cycle++;
+        var cycle = state.basicStats.cycle;
+        if ((cycle % 3 == 0) || cycle <= 3)
         {
             timeHandler.SetTimeScale(0);
             timeHandler.ActualizeToggles();
             var nodeDatas = ResourcesLoader.GetNodes();
             var effectDatas = ResourcesLoader.GetEffects();
-            var rewards = rewardManager.GenerateRewards(nodeDatas.ToArray(), effectDatas.ToArray(), 3, UnityEngine.Random.Range(2, 4), 3, cycle); // nodeDatas y effectDatas podria ser estatica y global en otra clase que guarde datas
+            var rewards = rewardManager.GenerateRewards(
+                nodeDatas.ToArray(),
+                effectDatas.ToArray(), 3, 
+                UnityEngine.Random.Range(2, 4), 3, cycle); // nodeDatas y effectDatas podria ser estatica y global en otra clase que guarde datas
             rewardManager.ShowRewards(rewards);
-            Debug.Log("A");
         }
 
         // calcular costo ede mantecion de nodos

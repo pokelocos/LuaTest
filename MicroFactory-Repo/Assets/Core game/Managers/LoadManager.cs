@@ -80,7 +80,6 @@ public class LoadManager : MonoBehaviour
     {
         foreach (var state in loadState.nodes)
         {
-            Debug.Log("state: "+state.name);
             var node = nodeManager.CreateNodeByName(state.name, state.currentTime);
             node.transform.position = state.Position;
         }
