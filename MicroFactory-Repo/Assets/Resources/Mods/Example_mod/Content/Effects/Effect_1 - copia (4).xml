@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<EffectInfo>
+    <Name>Zombies al ataque</Name>
+    <Description>zombies invaden los poblados, todas las poducciones son 30% mas lenta</Description>
+    <!-- <Icon>Zombies al ataque</Icon> -->
+    <BackgroundColor>ff00ff</BackgroundColor>
+    <IconColor>ff00ff</IconColor>
+    <TimerColor>ff00ff</TimerColor>
+    <LifeSpan>180</LifeSpan>
+    <!-- <isPermanent>true</isPermanent> -->
+</EffectInfo>

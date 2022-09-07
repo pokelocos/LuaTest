@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<NodeInfo>
+    <Name>village</Name>
+    <Description>The vilage is a place where you can coexist or enslave, you choose.</Description>
+    <MaintainCost>10</MaintainCost>
+    <Icon>stone-oven.png</Icon>
+    <BackgroundColor>#50E04F</BackgroundColor>
+    <IconColor>#FFFFFF</IconColor>
+    <TimerColor>#FFFFFF</TimerColor>
+    <InputMax>3</InputMax>
+    <OutputMax>4</OutputMax>
+    <Recipes>
+        <Recipe>Sell_sword</Recipe>
+    </Recipes>
+    <Tags>
+        <Tag>Minecraft</Tag>
+    </Tags>
+</NodeInfo>

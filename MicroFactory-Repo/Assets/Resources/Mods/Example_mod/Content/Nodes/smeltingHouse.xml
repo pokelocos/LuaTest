@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<NodeInfo>
+    <Name>smeltingHouse</Name>
+    <Description>The place where you put your solid blocks of earth and they transform into liquid cubes of fiery metal.</Description>
+    <MaintainCost>10</MaintainCost>
+    <Icon>stone-oven.png</Icon>
+    <BackgroundColor>#50E04F</BackgroundColor>
+    <IconColor>#FFFFFF</IconColor>
+    <TimerColor>#FFFFFF</TimerColor>
+    <InputMax>3</InputMax>
+    <OutputMax>4</OutputMax>
+    <Recipes>
+        <Recipe>Recipe_ironBar</Recipe>
+    </Recipes>
+    <Tags>
+        <Tag>Minecraft</Tag>
+    </Tags>
+</NodeInfo>

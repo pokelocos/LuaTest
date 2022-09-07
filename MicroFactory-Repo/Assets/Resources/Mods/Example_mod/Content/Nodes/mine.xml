@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<NodeInfo>
+    <Name>mine</Name>
+    <Description>A good place to get minerals</Description>
+    <MaintainCost>10</MaintainCost>
+    <Icon>miner.png</Icon>
+    <BackgroundColor>#50E04F</BackgroundColor>
+    <IconColor>#FFFFFF</IconColor>
+    <TimerColor>#FFFFFF</TimerColor>
+    <InputMax>3</InputMax>
+    <OutputMax>4</OutputMax>
+    <Recipes>
+        <Recipe>Obtain_ironOre</Recipe>
+    </Recipes>
+    <Tags>
+        <Tag>Minecraft</Tag>
+    </Tags>
+</NodeInfo>

@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New recipe data", menuName = "MicroFactory/Recipe Data...")]
 public class RecipeData : ScriptableObject
 {
+    [SerializeField] public string recipeName;
     [SerializeField] public float time = 1;
     [SerializeField] public float productionProfit = 0;
 
@@ -15,6 +16,7 @@ public class RecipeData : ScriptableObject
     public static RecipeData CreateFromInfo(RecipeInfo info)
     {
         var inst = ScriptableObject.CreateInstance("RecipeData") as RecipeData;
+        inst.recipeName = info.name;
         inst.time = info.waitTime;
         inst.productionProfit = info.profit;
 
@@ -37,6 +39,7 @@ public class RecipeData : ScriptableObject
 [XmlRoot(ElementName = "RecipeInfo")]
 public struct RecipeInfo // añadir name para tener una id de referencia ?
 {
+    [XmlElement(ElementName = "Name")] public string name;
     [XmlElement(ElementName = "WaitTime")] public float waitTime;
     [XmlElement(ElementName = "Profit")] public float profit;
     [XmlArray("Input")]

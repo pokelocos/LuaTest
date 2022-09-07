@@ -82,5 +82,5 @@ public struct NodeInfo
     [XmlArrayItem("Recipe")] public List<string> recipes;
 
     [XmlArray("Tags")]
-    [XmlArrayItem("tag")] public List<string> tags;
+    [XmlArrayItem("Tag")] public List<string> tags;
 }

@@ -2,8 +2,8 @@
 
 <IngredientInfo>
     <Name>IronOre</Name>
-    <Color1>#ff00ff00</Color1>
-    <Color2>#ff00ff00</Color2>
+    <Color1>#ADADAD</Color1>
+    <Color2>#5B5B5B</Color2>
     <Value>1</Value>
     <Tags>
         <Item>Iron</Item>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<NodeInfo>
+    <Name>forge</Name>
+    <Description>Hit the hot metal bar until it is no longer just a hot metal bar</Description>
+    <MaintainCost>10</MaintainCost>
+    <Icon>blacksmith.png</Icon>
+    <BackgroundColor>#50E04F</BackgroundColor>
+    <IconColor>#FFFFFF</IconColor>
+    <TimerColor>#FFFFFF</TimerColor>
+    <InputMax>3</InputMax>
+    <OutputMax>4</OutputMax>
+    <Recipes>
+        <Recipe>Recipe_sword</Recipe>
+    </Recipes>
+    <Tags>
+        <Tag>Minecraft</Tag>
+    </Tags>
+</NodeInfo>

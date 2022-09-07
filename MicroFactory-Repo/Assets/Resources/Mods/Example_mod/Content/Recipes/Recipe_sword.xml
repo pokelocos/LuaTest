@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <RecipeInfo>
+    <Name>Recipe_sword</Name>
     <WaitTime>5.0</WaitTime>
+    <Profit>0.0</Profit>
     <Input>
-        <Item>Tronco</Item>
+        <Item>IronBar</Item>
     </Input>
     <Output>
-        <Item>Tabla</Item>
+        <Item>Sword</Item>
     </Output>
 </RecipeInfo>

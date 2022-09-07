@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <IngredientInfo>
-    <Name>IronSword</Name>
-    <Color1>#ff00ff00</Color1>
-    <Color2>#ff00ff00</Color2>
+    <Name>Sword</Name>
+    <Color1>#5B5B5B</Color1>
+    <Color2>#ADADAD</Color2>
     <Value>15</Value>
     <Tags>
         <Item>Iron</Item>

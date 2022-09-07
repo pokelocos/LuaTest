@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<RecipeInfo>
+    <Name>Sell_sword</Name>
+    <WaitTime>5.0</WaitTime>
+    <Profit>100.0</Profit>
+    <Input>
+        <Item>Sword</Item>
+    </Input>
+</RecipeInfo>

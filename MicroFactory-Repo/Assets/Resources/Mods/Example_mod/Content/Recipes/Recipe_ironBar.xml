@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<RecipeInfo>
+    <Name>Recipe_ironBar</Name>
+    <WaitTime>5.0</WaitTime>
+    <Profit>0.0</Profit>
+    <Input>
+        <Item>IronOre</Item>
+    </Input>
+    <Output>
+        <Item>IronBar</Item>
+    </Output>
+</RecipeInfo>
