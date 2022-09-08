@@ -1,3 +1,4 @@
+using DataSystem;
 using RA.CommandConsole;
 using System;
 using System.Collections;
@@ -55,10 +56,12 @@ public static class ResourcesLoader
     /// </summary>
     public static void LoadDataGame() // llamar al inciar la escena de juego!!!
     {
-        LoadBaseGameData();
+        if(allowBaseData)
+            LoadBaseGameData();
 
-        if(allowModData)
+        if (allowModData)
         {
+            Debug.Log("AAAA");
             LoadModData();
         }
     }
@@ -96,9 +99,14 @@ public static class ResourcesLoader
     /// </summary>
     private static void LoadModData()
     {
-        for (int j = 0; j < ModLoader.ModsCount; j++)
+        var data = DataManager.LoadData<Data>();
+        var allowed = data.modsAllowed.allowedMods;
+        var mods = allowed.Where(m => m.Item2).Select(m => m.Item1).ToList();
+
+
+        for (int j = 0; j < mods.Count; j++)
         {
-            var mod = ModLoader.GetMod(j);
+            var mod = ModLoader.GetMod(mods[j]);
 
             // Load Ingredients
             var ingredients = new List<IngredientData>();

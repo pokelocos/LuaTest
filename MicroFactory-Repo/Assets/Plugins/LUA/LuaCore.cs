@@ -63,7 +63,6 @@ public static class LuaCore
             case DataType.Function:
                 if(!functions.ContainsKey(name))
                 {
-                    Debug.Log("Lua name: '"+name+"'.");
                     functions.Add(name, new List<DynValue>() { ret }); // << 
                 }
                 else
@@ -120,7 +119,6 @@ public static class LuaCore
 
         foreach (var method in methods)
         {
-            Debug.Log("AllMethod: "+method.Name);
             var attribute = method.GetCustomAttributes(typeof(LuaCommandAttribute), false)[0] as LuaCommandAttribute;
             var types = method.GetParameters().Select(x => x.ParameterType);
 
