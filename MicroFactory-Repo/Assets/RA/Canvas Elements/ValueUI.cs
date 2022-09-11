@@ -8,15 +8,13 @@ public class ValueUI : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private Text numberText;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetValue(string value)
     {
-        
+        numberText.text = value;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetIcon(Sprite sprite)
     {
-        
+        icon.sprite = sprite;
     }
 }

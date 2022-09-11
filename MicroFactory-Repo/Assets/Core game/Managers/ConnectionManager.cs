@@ -1,5 +1,6 @@
 using MoonSharp.Interpreter;
 using RA.UtilMonobehaviours;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,9 @@ public class ConnectionManager : MonoBehaviour
     private List<ConnectionController> connections = new List<ConnectionController>();
 
     public delegate void ConnectionEvent(ConnectionController c);
-
-
-
     public ConnectionEvent OnCreateConnection;
+    public Action<ConnectionController, NodeController, NodeController> OnSomeDisconnect;
+    public Action<ConnectionController, NodeController, NodeController> OnSomeConnect;
 
     public int TotalConnectionAmount => connections.Count();
     public List<ConnectionController> GetConnections => new List<ConnectionController>(connections);
@@ -131,7 +131,7 @@ public class ConnectionManager : MonoBehaviour
             return;
         }
 
-        if(!otherNode.CannConnect(currentIngredient))
+        if(!otherNode.CanConnect(currentIngredient))
         {
             connectionPreview.SetView(unmatchConnection);
         }
@@ -146,7 +146,7 @@ public class ConnectionManager : MonoBehaviour
         if (otherNode.InputCount + 1 > otherNode.MaxInput)
             return;
 
-        if(!otherNode.CannConnect(currentIngredient))
+        if(!otherNode.CanConnect(currentIngredient))
             return;
 
         CreateConnection(starNode, otherNode, currentIngredient);
@@ -163,9 +163,11 @@ public class ConnectionManager : MonoBehaviour
 
     public ConnectionController CreateConnection(NodeController from, NodeController to,IngredientData ingredient)
     {
-        var connection = Instantiate(connection_Pref, from.transform);
+        var connection = Instantiate(connection_Pref);
         connections.Add(connection);
         connection.Connect(from, to, ingredient);
+        connection.OnDisconnect += (cc,nc1,nc2) => { OnSomeDisconnect?.Invoke(cc, nc1, nc2); };
+        connection.OnConnect += (cc, nc1, nc2) => { OnSomeConnect?.Invoke(cc, nc1, nc2); };
 
         from.AddOutput(connection);
         to.AddInput(connection);

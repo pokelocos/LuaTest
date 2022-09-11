@@ -3594,6 +3594,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253547773}
   m_CullTransparentMesh: 1
+--- !u!114 &1278268920 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2085537456128204230, guid: dccc703e4f2e736428a1b1f1a7d4ac14, type: 3}
+  m_PrefabInstance: {fileID: 422553450}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a53491dea942a4fa05799cbce1c883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1293952003 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1870938477897785108, guid: dccc703e4f2e736428a1b1f1a7d4ac14, type: 3}
@@ -5730,6 +5741,9 @@ MonoBehaviour:
   timeHandler: {fileID: 1388346849}
   cameraHandler: {fileID: 592979764}
   dragHandler: {fileID: 1029445163}
+  moneyGui: {fileID: 1523420040}
+  cycleGui: {fileID: 838312478}
+  contractGui: {fileID: 1278268920}
 --- !u!114 &2108056263
 MonoBehaviour:
   m_ObjectHideFlags: 0

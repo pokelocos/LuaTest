@@ -33,7 +33,8 @@ public class TimeHandler : MonoBehaviour
             dayBar.fillAmount = ((t.Current / t.Max)); 
         };
 
-        SetTimeScale(0);
+        Time.timeScale = 0;
+        ActualizeToggles();
     }
     
     private void Update()

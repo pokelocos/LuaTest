@@ -1,9 +1,11 @@
 using RA.CommandConsole;
 using RA.Inputs;
 using RA.UtilMonobehaviours;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class NodeManager : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class NodeManager : MonoBehaviour
     [SerializeField] private ParticleManager particleManager;
 
     private List<NodeController> nodes = new List<NodeController>();
+
+    public event Action<NodeController, int, Vector2> OnSomeEndRecipe;
 
     public List<NodeController> GetNodes()
     {
@@ -29,19 +33,14 @@ public class NodeManager : MonoBehaviour
         var data = ResourcesLoader.GetNode(i);
         var node = Instantiate(node_Pref, Vector2.zero, Quaternion.identity);
         node.Init(data, startTime);
+        node.OnEndRecipe += (value, pos) => {
+            particleManager.SpanwNumberParticle("money", pos.x, pos.y, value);
+            OnSomeEndRecipe?.Invoke(node, value, pos);
+        };
         nodes.Add(node);
         return node;
     }
 
-    internal NodeController GetNode(int index)
-    {
-        return nodes[index];
-    }
-
-    internal NodeController GetNode(string name)
-    {
-        return nodes.Find(n => n.Data.nodeName == name);
-    }
 
     public NodeController CreateNodeByName(string name, float startTime = 0f)
     {
@@ -50,9 +49,19 @@ public class NodeManager : MonoBehaviour
         node.Init(data, startTime);
         node.OnEndRecipe += (value, pos) => {
             particleManager.SpanwNumberParticle("money", pos.x, pos.y, value);
+            OnSomeEndRecipe?.Invoke(node,value,pos);
             };
         nodes.Add(node);
         return node;
+    }
+    internal NodeController GetNode(int index)
+    {
+        return nodes[index];
+    }
+
+    internal NodeController GetNode(string name)
+    {
+        return nodes.Find(n => n.Data.nodeName == name);
     }
 
     internal void RemoveAll()

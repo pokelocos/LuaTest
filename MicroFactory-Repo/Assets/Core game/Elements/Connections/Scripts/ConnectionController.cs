@@ -1,3 +1,4 @@
+using RA.Inputs;
 using RA.UtilMonobehaviours;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,9 +19,9 @@ public class ConnectionController : MonoBehaviour
 
     private List<IngredientController> shippingIngredients = new List<IngredientController>();
 
-    private delegate void ConnexionEvent(ConnectionController cc, NodeController input, NodeController output);
-    private event ConnexionEvent OnConnect;
-    private event ConnexionEvent OnDisconnect;
+    public delegate void ConnexionEvent(ConnectionController cc, NodeController input, NodeController output);
+    public event ConnexionEvent OnConnect;
+    public event ConnexionEvent OnDisconnect;
 
     public NodeController GetInputNode() => from;
     public NodeController GetOutputNode() => to;
@@ -29,6 +30,23 @@ public class ConnectionController : MonoBehaviour
     public void Awake()
     {
         connectionView = GetComponent<ConnectionView>();
+    }
+
+    private void OnMouseOver()
+    {
+        var leftInput = 0;
+        var rightInput = 1;
+
+        if (InputUtils.MouseDoubleCLick(leftInput, this))
+        {
+            Disconnect();
+        }
+
+        if (InputUtils.MouseDoubleCLick(rightInput, this))
+        {
+            Debug.Log("Double Right cc");
+        }
+
     }
 
     public void InitEvent()
@@ -68,7 +86,7 @@ public class ConnectionController : MonoBehaviour
 
     private void Update()
     {
-        this.transform.position = from.transform.position;
+        this.transform.position = from.transform.position - new Vector3(0, 0, -1); 
         this.transform.right = to.transform.position - from.transform.position;
         var dis = Vector3.Distance(from.transform.position, to.transform.position);
         connectionView.SetSize(dis);

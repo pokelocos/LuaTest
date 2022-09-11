@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
     public CameraHandler cameraHandler;
     public DragHandler dragHandler;
 
+    [Header("GUI")]
+    public NumberGui moneyGui;
+    public NumberGui cycleGui;
+    public ValueUI contractGui;
+
     private GameState state;
 
     public void Awake()
@@ -40,11 +45,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-       
         // ver que hacer con los mods de state.Mods (!!!)
         
-
         LoadCommnads();
         timeHandler.OnEndCycle += () => OnEndCycle();
         rewardManager.OnSelectedReward += (r) =>
@@ -57,12 +59,18 @@ public class GameManager : MonoBehaviour
             effects.ForEach(e => effectmanager.CreateEffectByName(e.effectName));
         };
 
+        var bs = state.basicStats;
+        moneyGui.SetValue(bs.money.ToString());
+        cycleGui.SetValue(bs.cycle.ToString());
+        contractGui.SetValue(bs.points +"/5"); //cambiar "/5" por "/"+ maximo valor (!!!)
+
+        nodeManager.OnSomeEndRecipe += (node,profit,pos) => { AddMoney(profit); };
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public float GetMousePosX()
@@ -78,6 +86,8 @@ public class GameManager : MonoBehaviour
     public void AddMoney(int value)
     {
         state.basicStats.money += value;
+        moneyGui.SetDelayedValue(state.basicStats.money, 1, 20);
+
     }
 
 

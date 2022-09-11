@@ -97,7 +97,7 @@ public class NodeController : MonoBehaviour
 
         if (InputUtils.MouseDoubleCLick(rightInput,this))
         {
-            Debug.Log("Double Right");
+            Debug.Log("Double rigth");
         }
 
     }
@@ -135,7 +135,7 @@ public class NodeController : MonoBehaviour
     {
         if(inputs.Remove(connection))
         {
-            SelectCurrentRecipe();
+            //SelectCurrentRecipe();
             // call event "Remove input"
         }
         else if(outputs.Remove(connection))
@@ -144,7 +144,7 @@ public class NodeController : MonoBehaviour
         }
     }
 
-    public bool CannConnect(IngredientData newIngredient)
+    public bool CanConnect(IngredientData newIngredient)
     {
         data.recipes.OrderByDescending(r => r.inputIngredients.Count());
         var ings = inputs.Select(x => x.GetIngredientAllowed()).ToList();
@@ -173,7 +173,6 @@ public class NodeController : MonoBehaviour
             if (!clock.reverse) { 
                 SendProducts();
                 var profit = currentRecipe.productionProfit;
-                Debug.Log("profit: "+profit);
                 if (profit != 0)
                     OnEndRecipe?.Invoke((int)profit, this.transform.position);
             }
