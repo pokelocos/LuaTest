@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour
             var nodes = r.nodes.ToList();
             var effects = r.effects.ToList();
             nodes.ForEach(n => {
-                nodeManager.CreateNodeByName(n.nodeName);
+                var node = nodeManager.CreateNodeByName(n.nodeName);
+                node.transform.position = GetRandomPos();
                 });
             effects.ForEach(e => effectmanager.CreateEffectByName(e.effectName));
         };
@@ -71,6 +72,27 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public Vector3 GetPercentPos(float xPer, float yPer)
+    {
+        var sizeY = Camera.main.orthographicSize;
+        var aspect = Camera.main.aspect;
+        var pos = Camera.main.transform.position;
+        var sizeX = sizeY * aspect;
+        var fPosX = pos.x + (xPer * sizeX) - (sizeX / 2);
+        var fPosY = pos.y + (yPer * sizeY) - (sizeY / 2);
+        //Debug.Log(sizeX +", "+sizeY);
+        //var fPos = new Vector3((xPer * sizeX),(yPer * (sizeY)));
+        return new Vector3(fPosX,fPosY);
+    }
+
+    public Vector3 GetRandomPos()
+    {
+        //var pos = GetPercentPos(1f,1f);
+        //Debug.Log(pos);
+        var pos = GetPercentPos(Random.Range(0.2f,0.8f), Random.Range(0.2f, 0.8f));
+        return pos;
     }
 
     public float GetMousePosX()

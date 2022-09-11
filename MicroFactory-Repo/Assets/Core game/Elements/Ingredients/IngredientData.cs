@@ -27,6 +27,7 @@ public class IngredientData : ScriptableObject
     {
         var inst = ScriptableObject.CreateInstance("IngredientData") as IngredientData;
         inst.ingredientName = info.name;
+        inst.icon = ModLoader.GetImage(info.icon);
         inst.value = info.value;
         inst.primaryColor =  RA.Commons.StrToColor(info.color1);
         inst.secondaryColor = RA.Commons.StrToColor(info.color2);
@@ -40,6 +41,7 @@ public class IngredientData : ScriptableObject
 public struct IngredientInfo
 {
     [XmlElement(ElementName = "Name")] public string name;
+    [XmlElement(ElementName = "Icon")] public string icon;
     [XmlElement(ElementName = "Color1")] public string color1;
     [XmlElement(ElementName = "Color2")] public string color2;
     [XmlElement(ElementName = "Value")] public int value;

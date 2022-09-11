@@ -51,7 +51,6 @@ public class RewardManager : MonoBehaviour // reward manager
 
     public void ShowRewards(Reward[] rewards) // esto deberia estar en la view del panel de estra
     {
-        Debug.Log("B");
         lastTimeScale = Time.timeScale;
         this.rewards = rewards;
 

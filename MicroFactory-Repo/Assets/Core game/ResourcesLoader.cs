@@ -26,7 +26,7 @@ public static class ResourcesLoader
 
     // Recipes
     public static int RecipeAmount() => recipeDatas.Count;
-    public static RecipeData GetRecipe(string name) => recipeDatas.First(x => x.name.Equals(name)); // name fix (!!!)
+    public static RecipeData GetRecipe(string name) => recipeDatas.First(x => x.recipeName.Equals(name)); // name fix (!!!)
 
     // Nodes
     public static int NodeAmount() => nodeDatas.Count;
@@ -61,7 +61,6 @@ public static class ResourcesLoader
 
         if (allowModData)
         {
-            Debug.Log("AAAA");
             LoadModData();
         }
     }
@@ -119,7 +118,7 @@ public static class ResourcesLoader
                 }
                 catch { }
             }
-            ingredientDatas.Concat(ingredients);
+            ingredientDatas.AddRange(ingredients);
             Debug.Log("<color=#A92DDF>[Node Engine, Mod Resources]</color> Load <b>" + ingredients.Count + "</b> ingredient resources.");
 
             // Load Recipes
@@ -133,13 +132,17 @@ public static class ResourcesLoader
                 }
                 catch { }
             }
-            recipeDatas.Concat(recipes);
+            recipeDatas.AddRange(recipes);
             Debug.Log("<color=#A92DDF>[Node Engine, Mod Resources]</color> Load <b>" + recipes.Count + "</b> recipe resources.");
 
             // Load Nodes
             var nodes = new List<NodeData>();
             for (int i = 0; i < mod.nodesInfo.Count; i++)
             {
+                foreach (var m in mod.images)
+                {
+                    Debug.Log("k: " + m.Key + ", v: " + m.Value);
+                }
                 try
                 {
                     var node = NodeData.CreateFromInfo(mod.nodesInfo[i]);
@@ -147,7 +150,7 @@ public static class ResourcesLoader
                 }
                 catch { }
             }
-            nodeDatas.Concat(nodes);
+            nodeDatas.AddRange(nodes);
             Debug.Log("<color=#A92DDF>[Node Engine, Mod Resources]</color> Load <b>" + nodes.Count + "</b> node resources.");
 
             // Load Effects

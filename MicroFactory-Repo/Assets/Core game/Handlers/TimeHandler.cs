@@ -28,6 +28,8 @@ public class TimeHandler : MonoBehaviour
         timer.OnEnd += (t) => { 
             OnEndCycle?.Invoke();
             LuaCore.DoFunction("OnCycleEnd");
+            Time.timeScale = 1;
+            ActualizeToggles();
         };
         timer.OnUpdate += (t) => {
             dayBar.fillAmount = ((t.Current / t.Max)); 

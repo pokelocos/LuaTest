@@ -98,7 +98,6 @@ public static class ModLoader // change name to data loader ??
             loadedMods.Add(mod);
             try
             {
-                
                 Debug.Log("<color=#2283FF>[ModLoader]</color> <b>" + mod.basicInfo.name + "</b> mod has been loaded:\n" + mod.DebugInfo());
             }
             catch

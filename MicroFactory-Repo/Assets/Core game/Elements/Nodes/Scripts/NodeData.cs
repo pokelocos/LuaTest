@@ -43,6 +43,7 @@ public class NodeData : ScriptableObject // atributos publico (???)
         inst.nodeName = info.name;
         inst.description = info.description;
         inst.maintainCost = info.maintainCost;
+        Debug.Log("k: " + info.iconName);
         inst.icon = ModLoader.GetImage(info.iconName);
         inst.bgColor = Commons.StrToColor(info.backgroundColor);
         inst.iconColor = Commons.StrToColor(info.iconName);
