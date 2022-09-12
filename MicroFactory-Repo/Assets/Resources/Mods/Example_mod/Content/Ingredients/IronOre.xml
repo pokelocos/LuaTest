@@ -2,6 +2,7 @@
 
 <IngredientInfo>
     <Name>IronOre</Name>
+    <Icon>coal.png</Icon>
     <Color1>#ADADAD</Color1>
     <Color2>#5B5B5B</Color2>
     <Value>1</Value>

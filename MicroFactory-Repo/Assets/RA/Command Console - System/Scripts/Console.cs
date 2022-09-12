@@ -55,6 +55,7 @@ namespace RA.CommandConsole
         public void OnRetun()
         {
             Debug.Log("'"+ inputfield.text + "'");
+
             var x = Commands.HandleInput(inputfield.text);
             if (x)
                 Commands.Log("The  <b>" + inputfield.text + "</b> command was executed successfully.");

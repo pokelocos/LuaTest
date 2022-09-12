@@ -29,7 +29,7 @@ public class RecipeData : ScriptableObject
         for (int i = 0; i < info.outputs.Count; i++)
         {
             var ing = ResourcesLoader.GetIngredient(info.outputs[i]);
-            inst.inputIngredients.Add(ing);
+            inst.outputIngredients.Add(ing);
         }
 
         return inst;

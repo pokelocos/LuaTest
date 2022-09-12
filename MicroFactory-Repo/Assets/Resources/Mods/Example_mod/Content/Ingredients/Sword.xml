@@ -2,6 +2,7 @@
 
 <IngredientInfo>
     <Name>Sword</Name>
+    <Icon>swords.png</Icon>
     <Color1>#5B5B5B</Color1>
     <Color2>#ADADAD</Color2>
     <Value>15</Value>

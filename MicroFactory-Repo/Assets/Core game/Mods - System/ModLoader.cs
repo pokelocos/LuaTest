@@ -47,9 +47,16 @@ public static class ModLoader // change name to data loader ??
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    public static Mod GetMod(string name)
+    public static Mod? GetMod(string name)
     {
-        return loadedMods.First(m => name.Equals(m.basicInfo.name));
+        try
+        {
+            return loadedMods.First(m => name.Equals(m.basicInfo.name));
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     /// <summary>

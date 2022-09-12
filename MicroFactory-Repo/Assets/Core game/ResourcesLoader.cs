@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static ModLoader;
 
 public static class ResourcesLoader
 {
@@ -105,7 +106,12 @@ public static class ResourcesLoader
 
         for (int j = 0; j < mods.Count; j++)
         {
-            var mod = ModLoader.GetMod(mods[j]);
+            var nMod = ModLoader.GetMod(mods[j]);
+
+            if (nMod == null)
+                continue;
+
+            var mod = (Mod)nMod;
 
             // Load Ingredients
             var ingredients = new List<IngredientData>();
@@ -139,10 +145,6 @@ public static class ResourcesLoader
             var nodes = new List<NodeData>();
             for (int i = 0; i < mod.nodesInfo.Count; i++)
             {
-                foreach (var m in mod.images)
-                {
-                    Debug.Log("k: " + m.Key + ", v: " + m.Value);
-                }
                 try
                 {
                     var node = NodeData.CreateFromInfo(mod.nodesInfo[i]);
@@ -162,26 +164,27 @@ public static class ResourcesLoader
     }
 
 
-    [Command("Help nodeNames", "show a list of loaded nodes.", "Help node names")]
+    [Command("NodeNames", "show a list of loaded nodes.", "NodeNames")]
     public static void GetNodesNames() 
     {
-        Debug.Log(nodeDatas.Count);
-        foreach (var node in nodeDatas)
-        {
-            var n = node.name;
-            Commands.Log(n);
-        }
+        nodeDatas.ForEach(n => Commands.Log(n.nodeName));
     }
 
-    [Command("Help effectNames", "show a list of loaded effects.", "Help effect names")]
+    [Command("EffectNames", "show a list of loaded effects.", "EffectNames")]
     public static void GetEffectNames()  
     {
-        effectDatas.ForEach(n => Commands.Log(n.name));
+        effectDatas.ForEach(n => Commands.Log(n.effectName));
     }
 
-    [Command("Help ingredientNames", "show a list of loaded ingredients.", "Help ingredient names")]
+    [Command("IngredientNames", "show a list of loaded ingredients.", "IngredientNames")]
     public static void GetIngredientNames() 
     {
-        ingredientDatas.ForEach(n => Commands.Log(n.name));
+        ingredientDatas.ForEach(n => Commands.Log(n.ingredientName));
+    }
+
+    [Command("RecipetNames", "show a list of loaded recipes.", "RecipeNames")]
+    public static void GetRecipeNames()
+    {
+        recipeDatas.ForEach(n => Commands.Log(n.recipeName));
     }
 }

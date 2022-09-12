@@ -12,8 +12,8 @@ public class NodeData : ScriptableObject // atributos publico (???)
     public string description;
     public int maintainCost;
     public Sprite icon;
-    public List<string> tags;
-    public List<RecipeData> recipes;
+    public List<string> tags = new List<string>();
+    public List<RecipeData> recipes = new List<RecipeData>();
 
     public Color bgColor = Color.gray;
     public Color iconColor = Color.white;
@@ -43,7 +43,6 @@ public class NodeData : ScriptableObject // atributos publico (???)
         inst.nodeName = info.name;
         inst.description = info.description;
         inst.maintainCost = info.maintainCost;
-        Debug.Log("k: " + info.iconName);
         inst.icon = ModLoader.GetImage(info.iconName);
         inst.bgColor = Commons.StrToColor(info.backgroundColor);
         inst.iconColor = Commons.StrToColor(info.iconName);
@@ -56,9 +55,7 @@ public class NodeData : ScriptableObject // atributos publico (???)
         }
 
         inst.inputMax = inst.recipes.Max(x => x.inputIngredients.Count);
-        Debug.Log(inst.inputMax);
         inst.outputMax = inst.recipes.Max(x => x.outputIngredients.Count);
-        Debug.Log(inst.outputMax);
 
         inst.tags = info.tags;
 

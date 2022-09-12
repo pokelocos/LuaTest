@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0feba79b63c61254ba141524542f9283, type: 3}
   m_Name: cowFarm_1
   m_EditorClassIdentifier: 
+  recipeName: cowFarm_1
   time: 4
   productionProfit: 0
   inputIngredients: []

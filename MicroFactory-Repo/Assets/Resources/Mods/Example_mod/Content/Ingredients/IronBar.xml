@@ -2,6 +2,7 @@
 
 <IngredientInfo>
     <Name>IronBar</Name>
+    <Icon>gold-ingots.png</Icon>
     <Color1>#DDDDDD</Color1>
     <Color2>#ABABAB</Color2>
     <Value>5</Value>

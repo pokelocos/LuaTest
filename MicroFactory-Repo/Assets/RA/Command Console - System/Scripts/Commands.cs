@@ -49,7 +49,7 @@ namespace RA.CommandConsole
                 var command = commandList[i];
                 var commandBase = command as DebugCommandBase;
                
-                if (input.Contains(commandBase.CommandId))
+                if (properties[0].Equals(commandBase.CommandId))
                 {
                     if (commandList[i] as DebugCommand != null)
                     {
@@ -58,7 +58,12 @@ namespace RA.CommandConsole
                     }
                     else if ((commandList[i] as DebugCommand<int>) != null) // cambiar esto a algo con tipos dinamicos
                     {
-                        (commandList[i] as DebugCommand<int>).Invoke(int.Parse(properties[i]));
+                        (commandList[i] as DebugCommand<int>).Invoke(int.Parse(properties[1]));
+                        return true;
+                    }
+                    else if ((commandList[i] as DebugCommand<string>) != null) // cambiar esto a algo con tipos dinamicos
+                    {
+                        (commandList[i] as DebugCommand<string>).Invoke(properties[1]);
                         return true;
                     }
                 }

@@ -2,6 +2,7 @@
 
 <IngredientInfo>
     <Name>GoldBar</Name>
+    <Icon>gold-ingots.png</Icon>
     <Color1>#ff00ff00</Color1>
     <Color2>#ff00ff00</Color2>
     <Value>10</Value>
