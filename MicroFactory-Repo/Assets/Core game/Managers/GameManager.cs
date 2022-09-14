@@ -109,9 +109,13 @@ public class GameManager : MonoBehaviour
     {
         state.basicStats.money += value;
         moneyGui.SetDelayedValue(state.basicStats.money, 1, 20);
-
     }
 
+    public void SetCycle(int value)
+    {
+        state.basicStats.cycle = value;
+        cycleGui.SetValue(value.ToString());
+    }
 
     private void OnEndCycle()
     {
@@ -162,12 +166,15 @@ public class GameManager : MonoBehaviour
         });
         Commands.commandList.Add(destroyAll);
 
-        var addMoney = new DebugCommand<string>("AddMoney", "Add the indicated amount as money.", "add money", (x) => {
+        var addMoney = new DebugCommand<string>("AddMoney", "Add the indicated amount as money.", "AddMoney", (x) => {
+
+            AddMoney(int.Parse(x));
             //Debug.Log("a");
         });
         Commands.commandList.Add(addMoney);
 
-        var setCycle = new DebugCommand<string>("SetCycle", "---", "set_cycle", (x) => {
+        var setCycle = new DebugCommand<string>("SetCycle", "Set the cicle of the game.", "SetCycle", (x) => {
+            SetCycle(int.Parse(x));
             //Debug.Log("a");
         });
         Commands.commandList.Add(setCycle);

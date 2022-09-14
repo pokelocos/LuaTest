@@ -1,4 +1,5 @@
 using MoonSharp.Interpreter;
+using RA.CommandConsole;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ public class ParticleManager : MonoBehaviour
 
     private void Start()
     {
-
+        LoadCommnads();
     }
 
 
@@ -38,7 +39,8 @@ public class ParticleManager : MonoBehaviour
 
     internal void RemoveAll()
     {
-        throw new NotImplementedException();
+        //particles.ForEach(n => Destroy(n.gameObject));
+        //nodes = new List<NodeController>();
     }
 
     [System.Serializable]
@@ -46,5 +48,13 @@ public class ParticleManager : MonoBehaviour
     {
         public string name;
         public GameObject obj;
+    }
+
+    public void LoadCommnads()
+    {
+        var spawnParticles = new DebugCommand<string>("SpawnParticle", "Spawn particles", "SpawnParticle", (x) => {
+            SpawnIconParticle("starts",0f,0f);
+        });
+        Commands.commandList.Add(spawnParticles);
     }
 }

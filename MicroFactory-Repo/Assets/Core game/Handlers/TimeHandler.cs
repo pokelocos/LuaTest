@@ -41,6 +41,8 @@ public class TimeHandler : MonoBehaviour
     
     private void Update()
     {
+        return; // elminiar (!!!)
+
         if(Input.GetKeyDown(KeyCode.Space))
         {
             int v = 0;

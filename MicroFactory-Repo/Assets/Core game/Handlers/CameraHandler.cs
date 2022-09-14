@@ -106,6 +106,8 @@ public class CameraHandler : MonoBehaviour
 
     private void HandleManualMovement()
     {
+        return; // eleminar (!!!)
+
         if (Input.GetKey(KeyCode.W))
         {
             cameraFollowPosition.y += moveAmount * Time.unscaledDeltaTime;
